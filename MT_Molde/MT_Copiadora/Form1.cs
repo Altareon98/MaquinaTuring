@@ -12,155 +12,138 @@ namespace MT_Copiadora
 {
 	public partial class Main : Form
 	{
-		//Declaración de MT
-		MT miInversora;
-
 		public Main()
 		{
 			InitializeComponent();
 		}
 
-		private void Main_Load(object sender, EventArgs e)
+        //Declaración de MT
+        MT miMT;
+
+        private void Main_Load(object sender, EventArgs e)
 		{
-			//Creación de MT
-			miInversora = new MT(txtAlfabeto.Text[0], txtAlfC2.Text[0]);
+            btnReiniciar.Enabled = false;
 		}
 
 		private void btnAleatoria_Click(object sender, EventArgs e)
 		{
-			Random rndEntrada = new Random();
-			string strAlfabeto = miInversora.Caracter1.ToString() + miInversora.Caracter2.ToString() + "_";
-			int intLong = strAlfabeto.Length;
-			char chrCaracter;
-			int intLongEntrada = 10;
-			string strEntrada = "";
-			for (int i = 0; i < intLongEntrada; i++)
-			{
-				chrCaracter = strAlfabeto[rndEntrada.Next(intLong)];
-				strEntrada += chrCaracter.ToString();
-			}
+            try
+            {
+                Random rndEntrada = new Random();
+                string strAlfabeto = txtCinta.Text;
+                int intLong = strAlfabeto.Length;
+                char chrCaracter;
+                int intLongEntrada = 25;
+                string strEntrada = "";
+                for (int i = 0; i < intLongEntrada; i++)
+                {
+                    chrCaracter = strAlfabeto[rndEntrada.Next(intLong)];
+                    strEntrada += chrCaracter.ToString();
+                }
 
-			txtEntrada.Text = strEntrada;
+                txtEntrada.Text = strEntrada;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 		}
 
-		private void txtAlfC1_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtAlfabeto.SelectAll();
-		}
+        private void txtAlfabeto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string strCinta = txtAlfabeto.Text + "∆*#$";
+                txtCinta.Text = strCinta;
+                txtEntrada.Focus();
+            }
+        }
 
-		private void txtAlfC2_MouseClick(object sender, MouseEventArgs e)
-		{
-			txtAlfC2.SelectAll();
-		}
+        bool blnInEntrada = false;
+        private void txtEntrada_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (blnInEntrada)
+            {
+                blnInEntrada = false;
+            }
+            else
+            {
+                txtEntrada.SelectAll();
+                blnInEntrada = true;
+            }
+        }
 
-		private void txtAlfC1_TextChanged(object sender, EventArgs e)
-		{
-			if(txtAlfabeto.Text != txtAlfC2.Text && txtAlfabeto.Text != "_")
-			{
-				miInversora.Caracter1 = txtAlfabeto.Text[0];
-				txtEntrada.Clear();
-			}
-			else
-			{
-				MessageBox.Show("El caracter que se introdujo ya se encuentra en el Alfabeto actual.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-				txtAlfabeto.Text = miInversora.Caracter1.ToString();
-				txtAlfabeto.Focus();
-			}
-		}
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Creación de MT
+                miMT = new MT(int.Parse(numCabezal.Value.ToString()), txtAlfabeto.Text, txtEntrada.Text);
+                //Bloqueo y Desbloqueo de controles
+                grpCinta.Enabled = false;
+                grpEntrada.Enabled = false;
+                btnAceptar.Enabled = false;
+                btnNuevo.Enabled = true;
+                //Colocar datos en la cinta (DataGrid)
+                for (int i = 0; i < miMT.Entrada.Length - 1; i++)
+                {
 
-		private void txtAlfC2_TextChanged(object sender, EventArgs e)
-		{
-			if (txtAlfC2.Text != txtAlfabeto.Text && txtAlfC2.Text != "_")
-			{
-				miInversora.Caracter2 = txtAlfC2.Text[0];
-				txtEntrada.Clear();
-			}
-			else
-			{
-				MessageBox.Show("El caracter que se introdujo ya se encuentra en el Alfabeto actual.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-				txtAlfC2.Text = miInversora.Caracter2.ToString();
-				txtAlfC2.Focus();
-			}
-		}
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
-		private void btnIniciar_Click(object sender, EventArgs e)
-		{
-			//Ingresar Texto de Entrada a la Propiedad de Entrada
-			miInversora.Entrada = txtEntrada.Text.ToCharArray();
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            //Borrar MT
+            miMT = null;
 
-			//Definir el tamaño de la Cadena de Entrada
-			int intCadenaSize = 10;
-			miInversora.CadenaSize = intCadenaSize;
+            //Limpieza de controles
+            dtgCinta.Rows.Clear();
 
-			//Inicializar Cadena
-			miInversora.InicializarCadenaGeneral();
+            foreach(Control c in grpCinta.Controls)
+            {
+                if(c is TextBox)
+                {
+                    c.Text = "";
+                }
+            }
 
-			//Asignar Posición al Cabezal
-			miInversora.Cabezal = int.Parse(numCabezal.Value.ToString());
+            foreach (Control c in grpEntrada.Controls)
+            {
+                if (c is TextBox)
+                {
+                    c.Text = "";
+                }
+            }
 
-			//Se Inicializa la Lista de Pasos
-			miInversora.Pasos.Clear();
+            numCabezal.Value = 1;
 
-			//Iniciar MT
-			if (miInversora.Q0())
-			{
-				//Limpiar/Preparar DataGrid
-				dtgCinta.Rows.Clear();
+            //Tab/////////////////////////
+            //Movimiento
+            radIzquierdaM.Checked = true;
+            //Escritura
+            cmbEscritura.Items.Clear();
+            //Búsqueda
+            radIzquierdaB.Checked = true;
+            cmbBusqueda.Items.Clear();
+            //Ir a..
+            numCabezal.Value = 1;
+            txtCaracteresIrA.Clear();
 
-				//Se llena la DataGrid con los Pasos del Procedimiento
-				foreach(char[] miPaso in miInversora.Pasos)
-				{
-					dtgCinta.Rows.Add(
-						miPaso[0], miPaso[1], miPaso[2], miPaso[3], miPaso[4],
-						miPaso[5], miPaso[6], miPaso[7], miPaso[8], miPaso[9],
-						miPaso[10], miPaso[11], miPaso[12], miPaso[13], miPaso[14],
-						miPaso[15], miPaso[16], miPaso[17], miPaso[18], miPaso[19],
-						miPaso[20], miPaso[21], miPaso[22], miPaso[23], miPaso[24]
-						);
-				}
+            tabCreadorInstruccion.SelectedTab = tabMovimiento;
+            //////////////////////////////
 
-				txtCadenaInicial.Text = new string(ObtenerCadenaGeneral(intCadenaSize));
-				txtCadenaFinal.Text = new string(miInversora.Resultante);
-				MessageBox.Show("Procedimiento terminado", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
-			}
+            lstInstrucciones.Items.Clear();
 
-		}
-
-		private char[] ObtenerCadenaGeneral(int intCadenaSize)
-		{
-			//Inicializar Cadena General/Inicial
-			char[] arrCadenaGeneral = new char[25];
-			char[] arrInicial = new char[25];
-
-			for (int i = 0; i < 25; i++)
-			{
-				arrCadenaGeneral[i] = '_';
-			}
-			arrInicial = arrCadenaGeneral;
-
-			//Se añade la Cadena de Entrada a la Cadena General/Inicial
-			for (int i = 2; i < intCadenaSize + 2; i++)
-			{
-				arrInicial[i] = miInversora.Entrada[i - 2];
-			}
-
-			return arrInicial;
-		}
-
-		private void btnReiniciar_Click(object sender, EventArgs e)
-		{
-			//Limpiar Cadena de Entrada
-			txtEntrada.Clear();
-
-			//Limpiar DataGrid
-			dtgCinta.Rows.Clear();
-
-			//Limpiar Textbox de Grupo de Comparación
-			txtCadenaInicial.Clear();
-			txtCadenaFinal.Clear();
-
-			//Establecer Posición Inicial del Cabezal
-			numCabezal.Value = 2;
-		}
-	}
+            //Bloqueo y Desbloqueo de controles
+            grpCinta.Enabled = true;
+            grpEntrada.Enabled = true;
+            btnAceptar.Enabled = true;
+            btnNuevo.Enabled = false;
+        }
+    }
 }
