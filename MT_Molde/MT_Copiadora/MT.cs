@@ -9,10 +9,11 @@ namespace MT_Copiadora
 	class MT
 	{
 		//Constructor
-		public MT(int rintCabezal, string rstrAlfabeto, string rstrEntrada)
+		public MT(int rintCabezal, string rstrAlfabeto, string rstrCinta, string rstrEntrada)
 		{
             Cabezal = rintCabezal;
             Alfabeto = rstrAlfabeto;
+            Cinta = rstrCinta;
             Entrada = rstrEntrada;
             Resultante = rstrEntrada;
 		}
@@ -43,6 +44,24 @@ namespace MT_Copiadora
         private const char Especial1 = '*';
         private const char Especial2 = '#';
         private const char Especial3 = '$';
+
+        //Variable
+        private char chrVariable;
+
+        public char Variable
+        {
+            get { return chrVariable; }
+            set { chrVariable = value; }
+        }
+
+        //Cinta (General)
+        private string strCinta;
+
+        public string Cinta
+        {
+            get { return strCinta; }
+            set { strCinta = value; }
+        }
         ////////////////////
 
         //Cadena de Entrada

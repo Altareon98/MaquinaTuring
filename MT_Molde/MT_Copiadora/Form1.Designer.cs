@@ -152,6 +152,7 @@
             0,
             0,
             0});
+            this.numCabezal.ValueChanged += new System.EventHandler(this.numCabezal_ValueChanged);
             // 
             // grpEntrada
             // 

@@ -93,40 +93,92 @@ namespace MT_Copiadora
             }
         }
 
+        private bool ValidarAlfabeto()
+        {
+            for (int e = 0; e < txtEntrada.Text.Length; e++)
+            {
+                if (!txtAlfabeto.Text.Contains(txtEntrada.Text[e]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             try
             {
-                //Creación de MT
-                miMT = new MT(int.Parse(numCabezal.Value.ToString()), txtAlfabeto.Text, txtEntrada.Text);
-                //Bloqueo y Desbloqueo de controles
-                grpCinta.Enabled = false;
-                grpEntrada.Enabled = false;
-                btnAceptar.Enabled = false;
-                btnNuevo.Enabled = true;
-                //Crear columnas y Colocar datos en la cinta (DataGrid)
-                dtgCinta.ColumnCount = miMT.Entrada.Length;
-                string[] celdas = new string[miMT.Entrada.Length];
-                char[] cinta = miMT.Entrada.ToCharArray();
-                for (int i = 0; i < miMT.Entrada.Length; i++)
+                if (ValidarAlfabeto())
                 {
-                    celdas[i] = cinta[i].ToString();
+                    //Creación de MT
+                    miMT = new MT(int.Parse(numCabezal.Value.ToString()), txtAlfabeto.Text, txtCinta.Text, txtEntrada.Text);
+
+                    if (miMT.Alfabeto != "" && miMT.Cinta != "" && miMT.Entrada != "")
+                    {
+                        //Bloqueo y Desbloqueo de controles
+                        grpCinta.Enabled = false;
+                        grpEntrada.Enabled = false;
+                        btnAceptar.Enabled = false;
+                        btnNuevo.Enabled = true;
+                    }
+
+                    //Crear columnas y Colocar datos en la cinta (DataGrid)
+                    dtgCinta.ColumnCount = miMT.Entrada.Length;
+                    string[] celdas = new string[miMT.Entrada.Length];
+                    char[] cinta = miMT.Entrada.ToCharArray();
+                    for (int i = 0; i < miMT.Entrada.Length; i++)
+                    {
+                        celdas[i] = cinta[i].ToString();
+                    }
+                    dtgCinta.Rows.Add(celdas);
+
+                    //Limitar numCabezal a la Cantidad de Columnas
+                    numCabezal.Maximum = dtgCinta.ColumnCount;
+
+                    //Indicar la posicion del cabezal en la DTG
+                    ActualizarCabezal();
+
+                    //Agregar Lista de Caracteres a controles de tabCrearInstrucción
+                    //Creación de Lista de Caracteres
+                    List<char> lstCintaConVariable = new List<char>();
+
+                    for (int i = 0; i < miMT.Cinta.Length; i++)
+                    {
+                        lstCintaConVariable.Add(miMT.Cinta[i]);
+                    }
+                    lstCintaConVariable.Add('?');
+
+                    //Escritura
+                    cmbEscritura.DataSource = lstCintaConVariable;
+
+                    //Búsqueda
+                    cmbBusqueda.DataSource = lstCintaConVariable;
+
+                    ////////////////////////////////////////////////////////////////
                 }
-                dtgCinta.Rows.Add(celdas);
-
-                //Indicar la posicion del cabezal en la DTG
-                dtgCinta.CurrentCell = dtgCinta[miMT.Cabezal - 1, 0];
-                dtgCinta.CurrentCell.Style.BackColor = Color.FromArgb(61, 165, 206);
-                dtgCinta.CurrentCell.Style.ForeColor = Color.White;
-                dtgCinta.CurrentCell.Selected = false;
-
-                //Agregar Lista de Caracteres a controles de tabCrearInstrucción
-
-                ////////////////////////////////////////////////////////////////
+                else
+                {
+                    throw new Exception("Error en la Cadena de Entrada");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (txtEntrada.Text == "" || !ValidarAlfabeto())
+                {
+                    txtEntrada.Focus();
+                }
+                if (txtCinta.Text == "")
+                {
+                    txtCinta.Focus();
+                }
+                if (txtAlfabeto.Text == "")
+                {
+                    txtAlfabeto.Focus();
+                }
             }
         }
 
@@ -136,7 +188,9 @@ namespace MT_Copiadora
             miMT = null;
 
             //Limpieza de controles
+            dtgCinta.CurrentCell = null;
             dtgCinta.Rows.Clear();
+            dtgCinta.ScrollBars = ScrollBars.None;
 
             foreach(Control c in grpCinta.Controls)
             {
@@ -164,10 +218,10 @@ namespace MT_Copiadora
             //Movimiento
             radIzquierdaM.Checked = true;
             //Escritura
-            cmbEscritura.Items.Clear();
+            cmbEscritura.DataSource = null;
             //Búsqueda
             radIzquierdaB.Checked = true;
-            cmbBusqueda.Items.Clear();
+            cmbBusqueda.DataSource = null;
             //Ir a..
             numCabezal.Value = 1;
             txtCaracteresIrA.Clear();
@@ -211,6 +265,25 @@ namespace MT_Copiadora
         private void txtAlfabeto_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+        }
+
+        private void ActualizarCabezal()
+        {
+            if (numCabezal.Value <= dtgCinta.ColumnCount && dtgCinta.CurrentCell != null)
+            {
+                dtgCinta.CurrentCell.Style.BackColor = Color.White;
+                dtgCinta.CurrentCell.Style.ForeColor = Color.Black;
+                miMT.Cabezal = int.Parse(numCabezal.Value.ToString());
+                dtgCinta.CurrentCell = dtgCinta[miMT.Cabezal - 1, 0];
+                dtgCinta.CurrentCell.Style.BackColor = Color.FromArgb(61, 165, 206);
+                dtgCinta.CurrentCell.Style.ForeColor = Color.White;
+                dtgCinta.CurrentCell.Selected = false;
+            }
+        }
+
+        private void numCabezal_ValueChanged(object sender, EventArgs e)
+        {
+            ActualizarCabezal();
         }
     }
 }
