@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9C2BC2D5-C375-4B22-88E0-F6185D82EB05}</ProjectGuid>
+    <ProjectGuid>{844B4835-73FD-4D84-80F7-7228C25C3DE9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>MaquinaDeTuring</RootNamespace>
-    <AssemblyName>MaquinaDeTuring</AssemblyName>
+    <RootNamespace>MT_Copiadora</RootNamespace>
+    <AssemblyName>MT_Copiadora</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -52,7 +52,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="MaquinaTuring.cs" />
+    <Compile Include="MT.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
