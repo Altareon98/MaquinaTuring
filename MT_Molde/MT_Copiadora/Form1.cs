@@ -26,7 +26,6 @@ namespace MT_Copiadora
         private void Main_Load(object sender, EventArgs e)
 		{
             btnReiniciar.Enabled = false;
-            dtgCinta.Enabled = false;
 		}
 
 		private void btnAleatoria_Click(object sender, EventArgs e)
@@ -106,17 +105,20 @@ namespace MT_Copiadora
                 btnAceptar.Enabled = false;
                 btnNuevo.Enabled = true;
                 //Crear columnas y Colocar datos en la cinta (DataGrid)
+                dtgCinta.ColumnCount = miMT.Entrada.Length;
+                string[] celdas = new string[miMT.Entrada.Length];
+                char[] cinta = miMT.Entrada.ToCharArray();
                 for (int i = 0; i < miMT.Entrada.Length; i++)
                 {
-                    dtgCinta.Columns.Add(miMT.Entrada[i].ToString(), "");
+                    celdas[i] = cinta[i].ToString();
                 }
+                dtgCinta.Rows.Add(celdas);
 
-                dtgCinta.Rows.Add();
-
-                for (int i = 0; i < miMT.Entrada.Length; i++)
-                {
-                    dtgCinta.Rows[0].Cells[i].Value = miMT.Entrada[i];
-                }
+                //Indicar la posicion del cabezal en la DTG
+                dtgCinta.CurrentCell = dtgCinta[miMT.Cabezal - 1, 0];
+                dtgCinta.CurrentCell.Style.BackColor = Color.FromArgb(61, 165, 206);
+                dtgCinta.CurrentCell.Style.ForeColor = Color.White;
+                dtgCinta.CurrentCell.Selected = false;
 
                 //Agregar Lista de Caracteres a controles de tabCrearInstrucción
 

@@ -42,6 +42,9 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.grpCinta = new System.Windows.Forms.GroupBox();
+            this.chkCEspecial3 = new System.Windows.Forms.CheckBox();
+            this.chkCEspecial2 = new System.Windows.Forms.CheckBox();
+            this.chkCEspecial1 = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtAlfabeto = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -78,9 +81,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnReiniciar = new System.Windows.Forms.Button();
-            this.chkCEspecial1 = new System.Windows.Forms.CheckBox();
-            this.chkCEspecial2 = new System.Windows.Forms.CheckBox();
-            this.chkCEspecial3 = new System.Windows.Forms.CheckBox();
             this.grpMT.SuspendLayout();
             this.grpCabezal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCabezal)).BeginInit();
@@ -208,7 +208,7 @@
             // txtEntrada
             // 
             this.txtEntrada.Location = new System.Drawing.Point(70, 45);
-            this.txtEntrada.MaxLength = 50;
+            this.txtEntrada.MaxLength = 25;
             this.txtEntrada.Name = "txtEntrada";
             this.txtEntrada.Size = new System.Drawing.Size(180, 20);
             this.txtEntrada.TabIndex = 13;
@@ -260,6 +260,39 @@
             this.grpCinta.TabIndex = 0;
             this.grpCinta.TabStop = false;
             this.grpCinta.Text = "Γ = { Σ + _ + Especiales }";
+            // 
+            // chkCEspecial3
+            // 
+            this.chkCEspecial3.AutoSize = true;
+            this.chkCEspecial3.Location = new System.Drawing.Point(143, 66);
+            this.chkCEspecial3.Name = "chkCEspecial3";
+            this.chkCEspecial3.Size = new System.Drawing.Size(32, 17);
+            this.chkCEspecial3.TabIndex = 8;
+            this.chkCEspecial3.Text = "$";
+            this.chkCEspecial3.UseVisualStyleBackColor = true;
+            this.chkCEspecial3.CheckedChanged += new System.EventHandler(this.chkCEspecial3_CheckedChanged);
+            // 
+            // chkCEspecial2
+            // 
+            this.chkCEspecial2.AutoSize = true;
+            this.chkCEspecial2.Location = new System.Drawing.Point(104, 66);
+            this.chkCEspecial2.Name = "chkCEspecial2";
+            this.chkCEspecial2.Size = new System.Drawing.Size(33, 17);
+            this.chkCEspecial2.TabIndex = 7;
+            this.chkCEspecial2.Text = "#";
+            this.chkCEspecial2.UseVisualStyleBackColor = true;
+            this.chkCEspecial2.CheckedChanged += new System.EventHandler(this.chkCEspecial2_CheckedChanged);
+            // 
+            // chkCEspecial1
+            // 
+            this.chkCEspecial1.AutoSize = true;
+            this.chkCEspecial1.Location = new System.Drawing.Point(68, 66);
+            this.chkCEspecial1.Name = "chkCEspecial1";
+            this.chkCEspecial1.Size = new System.Drawing.Size(30, 17);
+            this.chkCEspecial1.TabIndex = 6;
+            this.chkCEspecial1.Text = "*";
+            this.chkCEspecial1.UseVisualStyleBackColor = true;
+            this.chkCEspecial1.CheckedChanged += new System.EventHandler(this.chkCEspecial1_CheckedChanged);
             // 
             // label8
             // 
@@ -640,39 +673,6 @@
             this.btnReiniciar.TabIndex = 7;
             this.btnReiniciar.Text = "Reiniciar";
             this.btnReiniciar.UseVisualStyleBackColor = true;
-            // 
-            // chkCEspecial1
-            // 
-            this.chkCEspecial1.AutoSize = true;
-            this.chkCEspecial1.Location = new System.Drawing.Point(68, 66);
-            this.chkCEspecial1.Name = "chkCEspecial1";
-            this.chkCEspecial1.Size = new System.Drawing.Size(30, 17);
-            this.chkCEspecial1.TabIndex = 6;
-            this.chkCEspecial1.Text = "*";
-            this.chkCEspecial1.UseVisualStyleBackColor = true;
-            this.chkCEspecial1.CheckedChanged += new System.EventHandler(this.chkCEspecial1_CheckedChanged);
-            // 
-            // chkCEspecial2
-            // 
-            this.chkCEspecial2.AutoSize = true;
-            this.chkCEspecial2.Location = new System.Drawing.Point(104, 66);
-            this.chkCEspecial2.Name = "chkCEspecial2";
-            this.chkCEspecial2.Size = new System.Drawing.Size(33, 17);
-            this.chkCEspecial2.TabIndex = 7;
-            this.chkCEspecial2.Text = "#";
-            this.chkCEspecial2.UseVisualStyleBackColor = true;
-            this.chkCEspecial2.CheckedChanged += new System.EventHandler(this.chkCEspecial2_CheckedChanged);
-            // 
-            // chkCEspecial3
-            // 
-            this.chkCEspecial3.AutoSize = true;
-            this.chkCEspecial3.Location = new System.Drawing.Point(143, 66);
-            this.chkCEspecial3.Name = "chkCEspecial3";
-            this.chkCEspecial3.Size = new System.Drawing.Size(32, 17);
-            this.chkCEspecial3.TabIndex = 8;
-            this.chkCEspecial3.Text = "$";
-            this.chkCEspecial3.UseVisualStyleBackColor = true;
-            this.chkCEspecial3.CheckedChanged += new System.EventHandler(this.chkCEspecial3_CheckedChanged);
             // 
             // Main
             // 
