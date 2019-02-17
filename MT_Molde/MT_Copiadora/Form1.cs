@@ -33,7 +33,7 @@ namespace MT_Copiadora
                 string strAlfabeto = txtCinta.Text;
                 int intLong = strAlfabeto.Length;
                 char chrCaracter;
-                int intLongEntrada = 25;
+                int intLongEntrada = 30;
                 string strEntrada = "";
                 for (int i = 0; i < intLongEntrada; i++)
                 {
@@ -49,13 +49,30 @@ namespace MT_Copiadora
             }
 		}
 
+        private void ActualizarCinta()
+        {
+            string strCaracteresEspeciales = "_";
+            if (chkCEspecial1.Checked)
+            {
+                strCaracteresEspeciales += "*";
+            }
+            if (chkCEspecial2.Checked)
+            {
+                strCaracteresEspeciales += "#";
+            }
+            if (chkCEspecial3.Checked)
+            {
+                strCaracteresEspeciales += "$";
+            }
+            string strCinta = txtAlfabeto.Text + strCaracteresEspeciales;
+            txtCinta.Text = strCinta;
+        }
+
         private void txtAlfabeto_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                string strCinta = txtAlfabeto.Text + "∆*#$";
-                txtCinta.Text = strCinta;
-                txtEntrada.Focus();
+                ActualizarCinta();
             }
         }
 
@@ -84,11 +101,22 @@ namespace MT_Copiadora
                 grpEntrada.Enabled = false;
                 btnAceptar.Enabled = false;
                 btnNuevo.Enabled = true;
-                //Colocar datos en la cinta (DataGrid)
-                for (int i = 0; i < miMT.Entrada.Length - 1; i++)
+                //Crear columnas y Colocar datos en la cinta (DataGrid)
+                for (int i = 0; i < miMT.Entrada.Length; i++)
                 {
-
+                    dtgCinta.Columns.Add(miMT.Entrada[i].ToString(), "");
                 }
+
+                dtgCinta.Rows.Add();
+
+                for (int i = 0; i < miMT.Entrada.Length; i++)
+                {
+                    dtgCinta.Rows[0].Cells[i].Value = miMT.Entrada[i];
+                }
+
+                //Agregar Lista de Caracteres a controles de tabCrearInstrucción
+
+                ////////////////////////////////////////////////////////////////
             }
             catch (Exception ex)
             {
@@ -111,6 +139,10 @@ namespace MT_Copiadora
                     c.Text = "";
                 }
             }
+
+            chkCEspecial1.Checked = false;
+            chkCEspecial2.Checked = false;
+            chkCEspecial3.Checked = false;
 
             foreach (Control c in grpEntrada.Controls)
             {
@@ -144,6 +176,35 @@ namespace MT_Copiadora
             grpEntrada.Enabled = true;
             btnAceptar.Enabled = true;
             btnNuevo.Enabled = false;
+        }
+
+        private void txtAlfabeto_TextChanged(object sender, EventArgs e)
+        {
+            ActualizarCinta();
+            txtEntrada.Clear();
+        }
+
+        private void chkCEspecial1_CheckedChanged(object sender, EventArgs e)
+        {
+            ActualizarCinta();
+            txtEntrada.Clear();
+        }
+
+        private void chkCEspecial2_CheckedChanged(object sender, EventArgs e)
+        {
+            ActualizarCinta();
+            txtEntrada.Clear();
+        }
+
+        private void chkCEspecial3_CheckedChanged(object sender, EventArgs e)
+        {
+            ActualizarCinta();
+            txtEntrada.Clear();
+        }
+
+        private void txtAlfabeto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
     }
 }

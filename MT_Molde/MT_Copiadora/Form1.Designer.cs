@@ -49,31 +49,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dtgCinta = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabCreadorInstruccion = new System.Windows.Forms.TabControl();
             this.tabMovimiento = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
@@ -103,6 +78,9 @@
             this.label16 = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnReiniciar = new System.Windows.Forms.Button();
+            this.chkCEspecial1 = new System.Windows.Forms.CheckBox();
+            this.chkCEspecial2 = new System.Windows.Forms.CheckBox();
+            this.chkCEspecial3 = new System.Windows.Forms.CheckBox();
             this.grpMT.SuspendLayout();
             this.grpCabezal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCabezal)).BeginInit();
@@ -125,7 +103,7 @@
             this.grpMT.Controls.Add(this.btnNuevo);
             this.grpMT.Controls.Add(this.btnAceptar);
             this.grpMT.Controls.Add(this.grpCinta);
-            this.grpMT.Location = new System.Drawing.Point(12, 41);
+            this.grpMT.Location = new System.Drawing.Point(12, 58);
             this.grpMT.Name = "grpMT";
             this.grpMT.Size = new System.Drawing.Size(560, 115);
             this.grpMT.TabIndex = 0;
@@ -230,7 +208,7 @@
             // txtEntrada
             // 
             this.txtEntrada.Location = new System.Drawing.Point(70, 45);
-            this.txtEntrada.MaxLength = 25;
+            this.txtEntrada.MaxLength = 50;
             this.txtEntrada.Name = "txtEntrada";
             this.txtEntrada.Size = new System.Drawing.Size(180, 20);
             this.txtEntrada.TabIndex = 13;
@@ -268,6 +246,9 @@
             // 
             // grpCinta
             // 
+            this.grpCinta.Controls.Add(this.chkCEspecial3);
+            this.grpCinta.Controls.Add(this.chkCEspecial2);
+            this.grpCinta.Controls.Add(this.chkCEspecial1);
             this.grpCinta.Controls.Add(this.label8);
             this.grpCinta.Controls.Add(this.txtAlfabeto);
             this.grpCinta.Controls.Add(this.label1);
@@ -297,7 +278,9 @@
             this.txtAlfabeto.Size = new System.Drawing.Size(75, 20);
             this.txtAlfabeto.TabIndex = 3;
             this.txtAlfabeto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAlfabeto.TextChanged += new System.EventHandler(this.txtAlfabeto_TextChanged);
             this.txtAlfabeto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAlfabeto_KeyDown);
+            this.txtAlfabeto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAlfabeto_KeyPress);
             // 
             // label1
             // 
@@ -313,9 +296,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 67);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 13);
+            this.label3.Size = new System.Drawing.Size(56, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Especial = { *, #, $ }";
+            this.label3.Text = "Especial =";
             // 
             // label2
             // 
@@ -329,7 +312,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 296);
+            this.label4.Location = new System.Drawing.Point(15, 313);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 13);
             this.label4.TabIndex = 4;
@@ -344,214 +327,13 @@
             this.dtgCinta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dtgCinta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgCinta.ColumnHeadersVisible = false;
-            this.dtgCinta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column8,
-            this.Column9,
-            this.Column10,
-            this.Column11,
-            this.Column12,
-            this.Column13,
-            this.Column14,
-            this.Column15,
-            this.Column16,
-            this.Column17,
-            this.Column18,
-            this.Column19,
-            this.Column20,
-            this.Column21,
-            this.Column22,
-            this.Column23,
-            this.Column24,
-            this.Column25});
             this.dtgCinta.Location = new System.Drawing.Point(12, 12);
             this.dtgCinta.Name = "dtgCinta";
             this.dtgCinta.ReadOnly = true;
             this.dtgCinta.RowHeadersVisible = false;
             this.dtgCinta.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            this.dtgCinta.Size = new System.Drawing.Size(560, 23);
+            this.dtgCinta.Size = new System.Drawing.Size(560, 40);
             this.dtgCinta.TabIndex = 2;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.HeaderText = "_";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "_";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.HeaderText = "0";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column4.HeaderText = "1";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column5.HeaderText = "2";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.HeaderText = "3";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column7.HeaderText = "4";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column8.HeaderText = "5";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column9.HeaderText = "6";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            // 
-            // Column10
-            // 
-            this.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column10.HeaderText = "7";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
-            // Column11
-            // 
-            this.Column11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column11.HeaderText = "8";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            // 
-            // Column12
-            // 
-            this.Column12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column12.HeaderText = "9";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
-            // Column13
-            // 
-            this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column13.HeaderText = "_";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            // 
-            // Column14
-            // 
-            this.Column14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column14.HeaderText = "_";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            // 
-            // Column15
-            // 
-            this.Column15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column15.HeaderText = "_";
-            this.Column15.Name = "Column15";
-            this.Column15.ReadOnly = true;
-            // 
-            // Column16
-            // 
-            this.Column16.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column16.HeaderText = "_";
-            this.Column16.Name = "Column16";
-            this.Column16.ReadOnly = true;
-            // 
-            // Column17
-            // 
-            this.Column17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column17.HeaderText = "_";
-            this.Column17.Name = "Column17";
-            this.Column17.ReadOnly = true;
-            // 
-            // Column18
-            // 
-            this.Column18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column18.HeaderText = "_";
-            this.Column18.Name = "Column18";
-            this.Column18.ReadOnly = true;
-            // 
-            // Column19
-            // 
-            this.Column19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column19.HeaderText = "_";
-            this.Column19.Name = "Column19";
-            this.Column19.ReadOnly = true;
-            // 
-            // Column20
-            // 
-            this.Column20.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column20.HeaderText = "_";
-            this.Column20.Name = "Column20";
-            this.Column20.ReadOnly = true;
-            // 
-            // Column21
-            // 
-            this.Column21.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column21.HeaderText = "_";
-            this.Column21.Name = "Column21";
-            this.Column21.ReadOnly = true;
-            // 
-            // Column22
-            // 
-            this.Column22.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column22.HeaderText = "_";
-            this.Column22.Name = "Column22";
-            this.Column22.ReadOnly = true;
-            // 
-            // Column23
-            // 
-            this.Column23.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column23.HeaderText = "_";
-            this.Column23.Name = "Column23";
-            this.Column23.ReadOnly = true;
-            // 
-            // Column24
-            // 
-            this.Column24.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column24.HeaderText = "_";
-            this.Column24.Name = "Column24";
-            this.Column24.ReadOnly = true;
-            // 
-            // Column25
-            // 
-            this.Column25.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column25.HeaderText = "_";
-            this.Column25.Name = "Column25";
-            this.Column25.ReadOnly = true;
             // 
             // tabCreadorInstruccion
             // 
@@ -560,7 +342,7 @@
             this.tabCreadorInstruccion.Controls.Add(this.tabEscritura);
             this.tabCreadorInstruccion.Controls.Add(this.tabBusqueda);
             this.tabCreadorInstruccion.Controls.Add(this.tabIrA);
-            this.tabCreadorInstruccion.Location = new System.Drawing.Point(12, 162);
+            this.tabCreadorInstruccion.Location = new System.Drawing.Point(12, 179);
             this.tabCreadorInstruccion.Name = "tabCreadorInstruccion";
             this.tabCreadorInstruccion.SelectedIndex = 0;
             this.tabCreadorInstruccion.Size = new System.Drawing.Size(290, 135);
@@ -826,7 +608,7 @@
             // lstInstrucciones
             // 
             this.lstInstrucciones.FormattingEnabled = true;
-            this.lstInstrucciones.Location = new System.Drawing.Point(308, 184);
+            this.lstInstrucciones.Location = new System.Drawing.Point(308, 201);
             this.lstInstrucciones.Name = "lstInstrucciones";
             this.lstInstrucciones.Size = new System.Drawing.Size(264, 108);
             this.lstInstrucciones.TabIndex = 4;
@@ -834,7 +616,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(308, 168);
+            this.label16.Location = new System.Drawing.Point(308, 185);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(125, 13);
             this.label16.TabIndex = 5;
@@ -842,7 +624,7 @@
             // 
             // btnIniciar
             // 
-            this.btnIniciar.Location = new System.Drawing.Point(454, 298);
+            this.btnIniciar.Location = new System.Drawing.Point(454, 315);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(56, 22);
             this.btnIniciar.TabIndex = 6;
@@ -851,18 +633,51 @@
             // 
             // btnReiniciar
             // 
-            this.btnReiniciar.Location = new System.Drawing.Point(516, 298);
+            this.btnReiniciar.Location = new System.Drawing.Point(516, 315);
             this.btnReiniciar.Name = "btnReiniciar";
             this.btnReiniciar.Size = new System.Drawing.Size(56, 22);
             this.btnReiniciar.TabIndex = 7;
             this.btnReiniciar.Text = "Reiniciar";
             this.btnReiniciar.UseVisualStyleBackColor = true;
             // 
+            // chkCEspecial1
+            // 
+            this.chkCEspecial1.AutoSize = true;
+            this.chkCEspecial1.Location = new System.Drawing.Point(68, 66);
+            this.chkCEspecial1.Name = "chkCEspecial1";
+            this.chkCEspecial1.Size = new System.Drawing.Size(30, 17);
+            this.chkCEspecial1.TabIndex = 6;
+            this.chkCEspecial1.Text = "*";
+            this.chkCEspecial1.UseVisualStyleBackColor = true;
+            this.chkCEspecial1.CheckedChanged += new System.EventHandler(this.chkCEspecial1_CheckedChanged);
+            // 
+            // chkCEspecial2
+            // 
+            this.chkCEspecial2.AutoSize = true;
+            this.chkCEspecial2.Location = new System.Drawing.Point(104, 66);
+            this.chkCEspecial2.Name = "chkCEspecial2";
+            this.chkCEspecial2.Size = new System.Drawing.Size(33, 17);
+            this.chkCEspecial2.TabIndex = 7;
+            this.chkCEspecial2.Text = "#";
+            this.chkCEspecial2.UseVisualStyleBackColor = true;
+            this.chkCEspecial2.CheckedChanged += new System.EventHandler(this.chkCEspecial2_CheckedChanged);
+            // 
+            // chkCEspecial3
+            // 
+            this.chkCEspecial3.AutoSize = true;
+            this.chkCEspecial3.Location = new System.Drawing.Point(143, 66);
+            this.chkCEspecial3.Name = "chkCEspecial3";
+            this.chkCEspecial3.Size = new System.Drawing.Size(32, 17);
+            this.chkCEspecial3.TabIndex = 8;
+            this.chkCEspecial3.Text = "$";
+            this.chkCEspecial3.UseVisualStyleBackColor = true;
+            this.chkCEspecial3.CheckedChanged += new System.EventHandler(this.chkCEspecial3_CheckedChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 326);
+            this.ClientSize = new System.Drawing.Size(584, 346);
             this.Controls.Add(this.btnReiniciar);
             this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.label4);
@@ -910,31 +725,6 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button btnAceptar;
 		private System.Windows.Forms.NumericUpDown numCabezal;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column25;
         private System.Windows.Forms.GroupBox grpCinta;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
@@ -977,6 +767,9 @@
         private System.Windows.Forms.GroupBox grpCabezal;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.CheckBox chkCEspecial3;
+        private System.Windows.Forms.CheckBox chkCEspecial2;
+        private System.Windows.Forms.CheckBox chkCEspecial1;
     }
 }
 
