@@ -23,7 +23,7 @@ namespace MT_Copiadora
 		private void Main_Load(object sender, EventArgs e)
 		{
 			//Creación de MT
-			miInversora = new MT(txtAlfC1.Text[0], txtAlfC2.Text[0]);
+			miInversora = new MT(txtAlfabeto.Text[0], txtAlfC2.Text[0]);
 		}
 
 		private void btnAleatoria_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace MT_Copiadora
 
 		private void txtAlfC1_MouseClick(object sender, MouseEventArgs e)
 		{
-			txtAlfC1.SelectAll();
+			txtAlfabeto.SelectAll();
 		}
 
 		private void txtAlfC2_MouseClick(object sender, MouseEventArgs e)
@@ -55,22 +55,22 @@ namespace MT_Copiadora
 
 		private void txtAlfC1_TextChanged(object sender, EventArgs e)
 		{
-			if(txtAlfC1.Text != txtAlfC2.Text && txtAlfC1.Text != "_")
+			if(txtAlfabeto.Text != txtAlfC2.Text && txtAlfabeto.Text != "_")
 			{
-				miInversora.Caracter1 = txtAlfC1.Text[0];
+				miInversora.Caracter1 = txtAlfabeto.Text[0];
 				txtEntrada.Clear();
 			}
 			else
 			{
 				MessageBox.Show("El caracter que se introdujo ya se encuentra en el Alfabeto actual.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-				txtAlfC1.Text = miInversora.Caracter1.ToString();
-				txtAlfC1.Focus();
+				txtAlfabeto.Text = miInversora.Caracter1.ToString();
+				txtAlfabeto.Focus();
 			}
 		}
 
 		private void txtAlfC2_TextChanged(object sender, EventArgs e)
 		{
-			if (txtAlfC2.Text != txtAlfC1.Text && txtAlfC2.Text != "_")
+			if (txtAlfC2.Text != txtAlfabeto.Text && txtAlfC2.Text != "_")
 			{
 				miInversora.Caracter2 = txtAlfC2.Text[0];
 				txtEntrada.Clear();
@@ -105,12 +105,12 @@ namespace MT_Copiadora
 			if (miInversora.Q0())
 			{
 				//Limpiar/Preparar DataGrid
-				dtgProcedimiento.Rows.Clear();
+				dtgCinta.Rows.Clear();
 
 				//Se llena la DataGrid con los Pasos del Procedimiento
 				foreach(char[] miPaso in miInversora.Pasos)
 				{
-					dtgProcedimiento.Rows.Add(
+					dtgCinta.Rows.Add(
 						miPaso[0], miPaso[1], miPaso[2], miPaso[3], miPaso[4],
 						miPaso[5], miPaso[6], miPaso[7], miPaso[8], miPaso[9],
 						miPaso[10], miPaso[11], miPaso[12], miPaso[13], miPaso[14],
@@ -153,7 +153,7 @@ namespace MT_Copiadora
 			txtEntrada.Clear();
 
 			//Limpiar DataGrid
-			dtgProcedimiento.Rows.Clear();
+			dtgCinta.Rows.Clear();
 
 			//Limpiar Textbox de Grupo de Comparación
 			txtCadenaInicial.Clear();
