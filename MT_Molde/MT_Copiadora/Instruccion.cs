@@ -136,7 +136,7 @@ namespace MT_Copiadora
                     break;
                 }
             }
-
+            PosicionCabezal++;
             return InstruccionSiguiente;
         }
 

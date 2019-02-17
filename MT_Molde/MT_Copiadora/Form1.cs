@@ -120,6 +120,7 @@ namespace MT_Copiadora
                         //Bloqueo y Desbloqueo de controles
                         grpCinta.Enabled = false;
                         grpEntrada.Enabled = false;
+                        grpCabezal.Enabled = false;
                         btnAceptar.Enabled = false;
                         btnNuevo.Enabled = true;
                     }
@@ -242,6 +243,7 @@ namespace MT_Copiadora
             //Bloqueo y Desbloqueo de controles
             grpCinta.Enabled = true;
             grpEntrada.Enabled = true;
+            grpCabezal.Enabled = true;
             btnAceptar.Enabled = true;
             btnNuevo.Enabled = false;
         }
@@ -389,6 +391,132 @@ namespace MT_Copiadora
 
             numPaso.Value = 1;
             txtCaracteresIrA.Clear();
+        }
+
+        //Ejecución de Tareas
+        int intInstruccionSiguiente = 1;
+
+        private void EjecutarAcciones(Instruccion miInstruccion)
+        {
+            switch (miInstruccion.Tipo)
+            {
+                case 1:
+                    miInstruccion.Cinta = miMT.Cinta;
+                    miInstruccion.PosicionCabezal = miMT.Cabezal;
+                    intInstruccionSiguiente = miInstruccion.MoverDerecha();
+                    miMT.Cabezal = miInstruccion.PosicionCabezal;
+                    break;
+                case 2:
+                    miInstruccion.Cinta = miMT.Cinta;
+                    miInstruccion.PosicionCabezal = miMT.Cabezal;
+                    intInstruccionSiguiente = miInstruccion.MoverIzquierda();
+                    miMT.Cabezal = miInstruccion.PosicionCabezal;
+                    break;
+                case 3:
+                    miInstruccion.Cinta = miMT.Cinta;
+                    miInstruccion.PosicionCabezal = miMT.Cabezal;
+                    intInstruccionSiguiente = miInstruccion.Escribir();
+                    miMT.Cinta = miInstruccion.Cinta;
+                    break;
+                case 4:
+                    miInstruccion.Cinta = miMT.Cinta;
+                    miInstruccion.PosicionCabezal = miMT.Cabezal;
+                    intInstruccionSiguiente = miInstruccion.BuscarDerecha();
+                    miMT.Cabezal = miInstruccion.PosicionCabezal;
+                    break;
+                case 5:
+                    miInstruccion.Cinta = miMT.Cinta;
+                    miInstruccion.PosicionCabezal = miMT.Cabezal;
+                    intInstruccionSiguiente = miInstruccion.BuscarIzquierda();
+                    miMT.Cabezal = miInstruccion.PosicionCabezal;
+                    break;
+                case 6:
+                    miInstruccion.Cinta = miMT.Cinta;
+                    miInstruccion.PosicionCabezal = miMT.Cabezal;
+                    intInstruccionSiguiente = miInstruccion.BuscarDiferenteDerecha();
+                    miMT.Cabezal = miInstruccion.PosicionCabezal;
+                    break;
+                case 7:
+                    miInstruccion.Cinta = miMT.Cinta;
+                    miInstruccion.PosicionCabezal = miMT.Cabezal;
+                    intInstruccionSiguiente = miInstruccion.BuscarDiferenteIzquierda();
+                    miMT.Cabezal = miInstruccion.PosicionCabezal;
+                    break;
+                case 8:
+                    miInstruccion.Cinta = miMT.Cinta;
+                    miInstruccion.PosicionCabezal = miMT.Cabezal;
+                    intInstruccionSiguiente = miInstruccion.IrA();
+                    miMT.Cabezal = miInstruccion.PosicionCabezal;
+                    break;
+                case 9:
+                    miMT.Variable = miMT.Entrada[miMT.Cabezal];
+                    miMT.Cabezal++;
+                    break;
+            }
+        }
+
+        private void ActualizarDTG()
+        {
+            Instruccion miInstruccionActual = new Instruccion();
+            bool blnEncontrado = false;
+
+            foreach(Instruccion miInstruccionLocal in misInstrucciones)
+            {
+                if(miInstruccionLocal.InstruccionId == intInstruccionSiguiente)
+                {
+                    miInstruccionActual = miInstruccionLocal;
+                    blnEncontrado = true;
+                    break;
+                }
+            }
+
+            if (blnEncontrado)
+            {
+                EjecutarAcciones(miInstruccionActual);
+
+                //Actualizar DTG
+                dtgCinta.Rows.Clear();
+                dtgCinta.ColumnCount = miMT.Entrada.Length;
+                string[] celdas = new string[miMT.Entrada.Length];
+                char[] cinta = miMT.Entrada.ToCharArray();
+                for (int i = 0; i < miMT.Entrada.Length; i++)
+                {
+                    celdas[i] = cinta[i].ToString();
+                }
+                dtgCinta.Rows.Add(celdas);
+
+                //Actualizar Cabezal
+                dtgCinta.CurrentCell.Style.BackColor = Color.White;
+                dtgCinta.CurrentCell.Style.ForeColor = Color.Black;
+                dtgCinta.CurrentCell = dtgCinta[miMT.Cabezal - 1, 0];
+                dtgCinta.CurrentCell.Style.BackColor = Color.FromArgb(61, 165, 206);
+                dtgCinta.CurrentCell.Style.ForeColor = Color.White;
+                dtgCinta.CurrentCell.Selected = false;
+            }
+            else
+            {
+                MessageBox.Show("Ha concluido el procedimiento", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                tmrEjecucion.Stop();
+            }
+        }
+
+        private void tmrEjecucion_Tick(object sender, EventArgs e)
+        {
+            ActualizarDTG();
+        }
+
+        private void btnIniciar_Click(object sender, EventArgs e)
+        {
+            if(tmrEjecucion.Enabled)
+            {
+                btnAceptar.Text = "Iniciar";
+                tmrEjecucion.Start();
+            }
+            else
+            {
+                btnAceptar.Text = "Detener";
+                tmrEjecucion.Stop();
+            }
         }
     }
 }

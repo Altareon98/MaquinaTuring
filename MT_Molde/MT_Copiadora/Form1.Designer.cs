@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+            this.components = new System.ComponentModel.Container();
             this.grpMT = new System.Windows.Forms.GroupBox();
             this.grpCabezal = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -82,6 +83,7 @@
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnReiniciar = new System.Windows.Forms.Button();
             this.chkDiferenteB = new System.Windows.Forms.CheckBox();
+            this.tmrEjecucion = new System.Windows.Forms.Timer(this.components);
             this.grpMT.SuspendLayout();
             this.grpCabezal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCabezal)).BeginInit();
@@ -671,6 +673,7 @@
             this.btnIniciar.TabIndex = 6;
             this.btnIniciar.Text = "Iniciar";
             this.btnIniciar.UseVisualStyleBackColor = true;
+            this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             // 
             // btnReiniciar
             // 
@@ -690,6 +693,11 @@
             this.chkDiferenteB.TabIndex = 11;
             this.chkDiferenteB.Text = "Diferente a ↑";
             this.chkDiferenteB.UseVisualStyleBackColor = true;
+            // 
+            // tmrEjecucion
+            // 
+            this.tmrEjecucion.Interval = 1500;
+            this.tmrEjecucion.Tick += new System.EventHandler(this.tmrEjecucion_Tick);
             // 
             // Main
             // 
@@ -788,6 +796,7 @@
         private System.Windows.Forms.RadioButton radDerechaB;
         private System.Windows.Forms.RadioButton radIzquierdaB;
         private System.Windows.Forms.CheckBox chkDiferenteB;
+        private System.Windows.Forms.Timer tmrEjecucion;
     }
 }
 
