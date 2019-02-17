@@ -24,6 +24,7 @@ namespace MT_Copiadora
         public string Cinta { get; set; }
         public int PosicionCabezal { get; set; }
         public int InstruccionSiguiente { get; set; }
+        public string ParametrosIrA { get; set; }
 
         // INSTRUCCIONES //
         public int MoverDerecha ()
@@ -118,8 +119,24 @@ namespace MT_Copiadora
             InstruccionSiguiente = InstruccionId++;
             return InstruccionSiguiente;
         }
+        
+        public int IrA (int irA)
+        {
+            char[] parametros = ParametrosIrA.ToCharArray();
+            char[] cadena = Cinta.ToCharArray();
 
-        // agregar metodo IR A //
+            InstruccionSiguiente = InstruccionId++;
+            for (int i = 0; i < parametros.Length; i++)
+            {
+                if (parametros[i] == cadena[PosicionCabezal])
+                {
+                    InstruccionSiguiente = irA;
+                    break;
+                }
+            }
+
+            return InstruccionSiguiente;
+        }
 
         // VERIFICACIONES //
         private bool VerificarMovimientoIzquierda (int posCabezal)
@@ -129,6 +146,40 @@ namespace MT_Copiadora
                 return false;
             }
             return true;
+        }
+
+        // METODOS //
+        public override string ToString()
+        {
+            string cadena = "";
+            switch (Tipo)
+            {
+                case 1:
+                    cadena = "Moverse a la derecha.";
+                    break;
+                case 2:
+                    cadena = "Moverse a la izquierda.";
+                    break;
+                case 3:
+                    cadena = "Escribir símbolo: " + SimboloAEscribir;
+                    break;
+                case 4:
+                    cadena = "Buscar símbolo a la derecha: " + SimboloBuscado;
+                    break;
+                case 5:
+                    cadena = "Buscar símbolo a la izquierda: " + SimboloBuscado;
+                    break;
+                case 6:
+                    cadena = "Buscar símbolo diferente a " + SimboloBuscado + " hacia la derecha.";
+                    break;
+                case 7:
+                    cadena = "Buscar símbolo diferente a " + SimboloBuscado + " hacia la izquierda.";
+                    break;
+                case 8:
+                    cadena = "Ir a " + InstruccionSiguiente + ", bajo: " + ParametrosIrA;
+                    break;
+            }
+            return cadena;
         }
     }
 }
