@@ -403,7 +403,6 @@
             this.btnAgregarM.TabIndex = 0;
             this.btnAgregarM.Text = "Agregar";
             this.btnAgregarM.UseVisualStyleBackColor = true;
-            this.btnAgregarM.Click += new System.EventHandler(this.btnAgregarM_Click);
             // 
             // tabAlmacenamiento
             // 

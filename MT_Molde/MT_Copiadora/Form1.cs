@@ -182,7 +182,6 @@ namespace MT_Copiadora
             btnNuevo.Enabled = false;
         }
 
-<<<<<<< Updated upstream
         private void txtAlfabeto_TextChanged(object sender, EventArgs e)
         {
             ActualizarCinta();
@@ -210,19 +209,6 @@ namespace MT_Copiadora
         private void txtAlfabeto_KeyPress(object sender, KeyPressEventArgs e)
         {
 
-=======
-        private void btnAgregarM_Click(object sender, EventArgs e)
-        {
-            Instruccion miInstruccion = new Instruccion();
-            if (radIzquierdaM.Checked)
-                miInstruccion.Tipo = 2;
-            else
-                miInstruccion.Tipo = 1;
-
-            miInstruccion.InstruccionId = misInstrucciones.Count + 1;
-            misInstrucciones.Add(miInstruccion);
-            lstInstrucciones.Items.Add(miInstruccion.ToString());
->>>>>>> Stashed changes
         }
     }
 }
