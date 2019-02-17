@@ -23,6 +23,7 @@ namespace MT_Copiadora
         private void Main_Load(object sender, EventArgs e)
 		{
             btnReiniciar.Enabled = false;
+            dtgCinta.Enabled = false;
 		}
 
 		private void btnAleatoria_Click(object sender, EventArgs e)

@@ -179,7 +179,7 @@ namespace MT_Copiadora
                     cadena = "Ir a " + InstruccionSiguiente + ", bajo: " + ParametrosIrA;
                     break;
             }
-            return cadena;
+            return Tipo.ToString() + cadena;
         }
     }
 }
