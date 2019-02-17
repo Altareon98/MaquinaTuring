@@ -9,136 +9,58 @@ namespace MT_Copiadora
 	class MT
 	{
 		//Constructor
-		public MT(char rCaracter1, char rCaracter2)
+		public MT(int rintCabezal, string rstrAlfabeto, string rstrEntrada)
 		{
-			Caracter1 = rCaracter1;
-			Caracter2 = rCaracter2;
-			Pasos = new List<char[]>();
+            Cabezal = rintCabezal;
+            Alfabeto = rstrAlfabeto;
+            Entrada = rstrEntrada;
+            Resultante = rstrEntrada;
 		}
 
-		//Alfabeto
-		private char alfCaracter1;
+        //Cabezal (Posición)
+        private int intCabezal;
 
-		public char Caracter1
-		{
-			get { return alfCaracter1; }
-			set { alfCaracter1 = value; }
-		}
+        public int Cabezal
+        {
+            get { return intCabezal; }
+            set { intCabezal = value; }
+        }
 
-		private char alfCaracter2;
+        //Cinta/////////////
+        //Alfabeto
+        private string strAlfabeto;
 
-		public char Caracter2
-		{
-			get { return alfCaracter2; }
-			set { alfCaracter2 = value; }
-		}
+        public string Alfabeto
+        {
+            get { return strAlfabeto; }
+            set { strAlfabeto = value; }
+        }
 
-		private const char Blanco = '_';
+        //Blanco
+        private const char Blanco = '_';
 
-		//Cabezal (Posición)
-		private int intCabezal;
+        //Caracteres Especiales
+        private const char Especial1 = '*';
+        private const char Especial2 = '#';
+        private const char Especial3 = '$';
+        ////////////////////
 
-		public int Cabezal
-		{
-			get { return intCabezal; }
-			set { intCabezal = value; }
-		}
+        //Cadena de Entrada
+        private string strEntrada;
 
-		//Tamaño de Cadena
-		private int intCadenaSize;
+        public string Entrada
+        {
+            get { return strEntrada; }
+            set { strEntrada = value; }
+        }
 
-		public int CadenaSize
-		{
-			get { return intCadenaSize; }
-			set { intCadenaSize = value; }
-		}
+        //Cadena Resultante
+        private string strResultante;
 
-		//Cadena de Entrada
-		private char[] arrEntrada;
-
-		public char[] Entrada
-		{
-			get { return arrEntrada; }
-			set { arrEntrada = value; }
-		}
-
-		//Cadena Resultante
-		private char[] arrResultante;
-
-		public char[] Resultante
-		{
-			get { return arrResultante; }
-			set { arrResultante = value; }
-		}
-
-		//Listado de Pasos
-		private List<char[]> lstPasos;
-
-		public List<char[]> Pasos
-		{
-			get { return lstPasos; }
-			set { lstPasos = value; }
-		}
-
-		//Estados de MT Eliminadora de Símbolos contrarios al actual hacia la derecha | Prueba de MT
-		//Q = {q0, q1, q2, q3}
-
-		//Inicializar Cadena General
-		public void InicializarCadenaGeneral()
-		{
-			//Inicializar Cadena General/Resultante
-			char[] arrCadenaGeneral = new char[25];
-			for (int i = 0; i < 25; i++)
-			{
-				arrCadenaGeneral[i] = '_';
-			}
-			Resultante = arrCadenaGeneral;
-
-			//Se añade la Cadena de Entrada a la Cadena General/Resultante
-			for (int i = 2; i < CadenaSize + 2; i++)
-			{
-				Resultante[i] = Entrada[i - 2];
-			}
-
-			//Se crea un Paso
-			CrearPaso();
-
-			return;
-		}
-
-		//Estado q0
-		public bool Q0()
-		{
-
-			return true;
-		}
-
-		public void Q1()
-		{
-
-			return;
-		}
-
-		public void Q2()
-		{
-
-			return;
-		}
-
-		private void CrearPaso()
-		{
-			//Crear String donde se almacene la Cadena General Actual
-			string strCadenaGeneralMomentanea = new string(Resultante);
-
-			//Crear Array donde se almacenen los caracteres de la Cadena General Actual
-			char[] arrCadenaGeneralMomentanea = new char[25];
-			for (int i = 0; i < 25; i++)
-			{
-				arrCadenaGeneralMomentanea[i] = strCadenaGeneralMomentanea[i];
-			}
-
-			//Agregar Array a la Lista de Pasos
-			Pasos.Add(arrCadenaGeneralMomentanea);
-		}
+        public string Resultante
+        {
+            get { return strResultante; }
+            set { strResultante = value; }
+        }
 	}
 }

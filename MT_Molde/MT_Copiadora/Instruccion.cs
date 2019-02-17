@@ -9,6 +9,7 @@ namespace MT_Copiadora
     class Instruccion
     {
         // CONSTRUCTORES //
+        public Instruccion() { }
         public Instruccion(string cinta, int posicionCabezal)
         {
             Cinta = cinta;
@@ -179,7 +180,7 @@ namespace MT_Copiadora
                     cadena = "Ir a " + InstruccionSiguiente + ", bajo: " + ParametrosIrA;
                     break;
             }
-            return cadena;
+            return InstruccionId.ToString() + ".- " + cadena;
         }
     }
 }
