@@ -26,6 +26,7 @@ namespace MT_Copiadora
         public int PosicionCabezal { get; set; }
         public int InstruccionSiguiente { get; set; }
         public string ParametrosIrA { get; set; }
+        public int InstruccionIrA { get; set; }
 
         // INSTRUCCIONES //
         public int MoverDerecha ()
@@ -121,7 +122,7 @@ namespace MT_Copiadora
             return InstruccionSiguiente;
         }
         
-        public int IrA (int irA)
+        public int IrA ()
         {
             char[] parametros = ParametrosIrA.ToCharArray();
             char[] cadena = Cinta.ToCharArray();
@@ -131,7 +132,7 @@ namespace MT_Copiadora
             {
                 if (parametros[i] == cadena[PosicionCabezal])
                 {
-                    InstruccionSiguiente = irA;
+                    InstruccionSiguiente = InstruccionIrA;
                     break;
                 }
             }
@@ -177,7 +178,10 @@ namespace MT_Copiadora
                     cadena = "Buscar símbolo diferente a " + SimboloBuscado + " hacia la izquierda.";
                     break;
                 case 8:
-                    cadena = "Ir a " + InstruccionSiguiente + ", bajo: " + ParametrosIrA;
+                    cadena = "Ir a " + InstruccionIrA + ", bajo: " + ParametrosIrA;
+                    break;
+                case 9:
+                    cadena = "Almacenar en variable.";
                     break;
             }
             return InstruccionId.ToString() + ".- " + cadena;

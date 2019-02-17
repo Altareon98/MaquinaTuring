@@ -65,6 +65,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnAgregarE = new System.Windows.Forms.Button();
             this.tabBusqueda = new System.Windows.Forms.TabPage();
+            this.radDerechaB = new System.Windows.Forms.RadioButton();
+            this.radIzquierdaB = new System.Windows.Forms.RadioButton();
             this.cmbBusqueda = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -74,13 +76,12 @@
             this.label15 = new System.Windows.Forms.Label();
             this.numPaso = new System.Windows.Forms.NumericUpDown();
             this.label14 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAgregarI = new System.Windows.Forms.Button();
             this.lstInstrucciones = new System.Windows.Forms.ListBox();
             this.label16 = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnReiniciar = new System.Windows.Forms.Button();
-            this.radDerechaB = new System.Windows.Forms.RadioButton();
-            this.radIzquierdaB = new System.Windows.Forms.RadioButton();
+            this.chkDiferenteB = new System.Windows.Forms.CheckBox();
             this.grpMT.SuspendLayout();
             this.grpCabezal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCabezal)).BeginInit();
@@ -447,6 +448,7 @@
             this.btnAgregarA.TabIndex = 1;
             this.btnAgregarA.Text = "Agregar";
             this.btnAgregarA.UseVisualStyleBackColor = true;
+            this.btnAgregarA.Click += new System.EventHandler(this.btnAgregarA_Click);
             // 
             // tabEscritura
             // 
@@ -496,9 +498,11 @@
             this.btnAgregarE.TabIndex = 1;
             this.btnAgregarE.Text = "Agregar";
             this.btnAgregarE.UseVisualStyleBackColor = true;
+            this.btnAgregarE.Click += new System.EventHandler(this.btnAgregarE_Click);
             // 
             // tabBusqueda
             // 
+            this.tabBusqueda.Controls.Add(this.chkDiferenteB);
             this.tabBusqueda.Controls.Add(this.radDerechaB);
             this.tabBusqueda.Controls.Add(this.radIzquierdaB);
             this.tabBusqueda.Controls.Add(this.cmbBusqueda);
@@ -511,6 +515,28 @@
             this.tabBusqueda.TabIndex = 2;
             this.tabBusqueda.Text = "Búsqueda";
             this.tabBusqueda.UseVisualStyleBackColor = true;
+            // 
+            // radDerechaB
+            // 
+            this.radDerechaB.AutoSize = true;
+            this.radDerechaB.Checked = true;
+            this.radDerechaB.Location = new System.Drawing.Point(6, 19);
+            this.radDerechaB.Name = "radDerechaB";
+            this.radDerechaB.Size = new System.Drawing.Size(66, 17);
+            this.radDerechaB.TabIndex = 10;
+            this.radDerechaB.TabStop = true;
+            this.radDerechaB.Text = "Derecha";
+            this.radDerechaB.UseVisualStyleBackColor = true;
+            // 
+            // radIzquierdaB
+            // 
+            this.radIzquierdaB.AutoSize = true;
+            this.radIzquierdaB.Location = new System.Drawing.Point(6, 42);
+            this.radIzquierdaB.Name = "radIzquierdaB";
+            this.radIzquierdaB.Size = new System.Drawing.Size(68, 17);
+            this.radIzquierdaB.TabIndex = 9;
+            this.radIzquierdaB.Text = "Izquierda";
+            this.radIzquierdaB.UseVisualStyleBackColor = true;
             // 
             // cmbBusqueda
             // 
@@ -546,6 +572,7 @@
             this.btnAgregarB.TabIndex = 2;
             this.btnAgregarB.Text = "Agregar";
             this.btnAgregarB.UseVisualStyleBackColor = true;
+            this.btnAgregarB.Click += new System.EventHandler(this.btnAgregarB_Click);
             // 
             // tabIrA
             // 
@@ -553,7 +580,7 @@
             this.tabIrA.Controls.Add(this.label15);
             this.tabIrA.Controls.Add(this.numPaso);
             this.tabIrA.Controls.Add(this.label14);
-            this.tabIrA.Controls.Add(this.button1);
+            this.tabIrA.Controls.Add(this.btnAgregarI);
             this.tabIrA.Location = new System.Drawing.Point(4, 22);
             this.tabIrA.Name = "tabIrA";
             this.tabIrA.Size = new System.Drawing.Size(282, 109);
@@ -609,14 +636,15 @@
             this.label14.TabIndex = 4;
             this.label14.Text = "Paso:";
             // 
-            // button1
+            // btnAgregarI
             // 
-            this.button1.Location = new System.Drawing.Point(220, 81);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 22);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Agregar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAgregarI.Location = new System.Drawing.Point(220, 81);
+            this.btnAgregarI.Name = "btnAgregarI";
+            this.btnAgregarI.Size = new System.Drawing.Size(56, 22);
+            this.btnAgregarI.TabIndex = 3;
+            this.btnAgregarI.Text = "Agregar";
+            this.btnAgregarI.UseVisualStyleBackColor = true;
+            this.btnAgregarI.Click += new System.EventHandler(this.btnAgregarI_Click);
             // 
             // lstInstrucciones
             // 
@@ -653,27 +681,15 @@
             this.btnReiniciar.Text = "Reiniciar";
             this.btnReiniciar.UseVisualStyleBackColor = true;
             // 
-            // radDerechaB
+            // chkDiferenteB
             // 
-            this.radDerechaB.AutoSize = true;
-            this.radDerechaB.Checked = true;
-            this.radDerechaB.Location = new System.Drawing.Point(6, 19);
-            this.radDerechaB.Name = "radDerechaB";
-            this.radDerechaB.Size = new System.Drawing.Size(66, 17);
-            this.radDerechaB.TabIndex = 10;
-            this.radDerechaB.TabStop = true;
-            this.radDerechaB.Text = "Derecha";
-            this.radDerechaB.UseVisualStyleBackColor = true;
-            // 
-            // radIzquierdaB
-            // 
-            this.radIzquierdaB.AutoSize = true;
-            this.radIzquierdaB.Location = new System.Drawing.Point(6, 42);
-            this.radIzquierdaB.Name = "radIzquierdaB";
-            this.radIzquierdaB.Size = new System.Drawing.Size(68, 17);
-            this.radIzquierdaB.TabIndex = 9;
-            this.radIzquierdaB.Text = "Izquierda";
-            this.radIzquierdaB.UseVisualStyleBackColor = true;
+            this.chkDiferenteB.AutoSize = true;
+            this.chkDiferenteB.Location = new System.Drawing.Point(82, 30);
+            this.chkDiferenteB.Name = "chkDiferenteB";
+            this.chkDiferenteB.Size = new System.Drawing.Size(87, 17);
+            this.chkDiferenteB.TabIndex = 11;
+            this.chkDiferenteB.Text = "Diferente a ↑";
+            this.chkDiferenteB.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
@@ -739,7 +755,7 @@
         private System.Windows.Forms.RadioButton radDerechaM;
         private System.Windows.Forms.Button btnAgregarE;
         private System.Windows.Forms.Button btnAgregarB;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAgregarI;
         private System.Windows.Forms.ComboBox cmbEscritura;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TabPage tabAlmacenamiento;
@@ -771,6 +787,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RadioButton radDerechaB;
         private System.Windows.Forms.RadioButton radIzquierdaB;
+        private System.Windows.Forms.CheckBox chkDiferenteB;
     }
 }
 

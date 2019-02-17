@@ -303,16 +303,92 @@ namespace MT_Copiadora
             lstInstrucciones.Items.Add(rmiInstruccion);
         }
 
+        //Instrucción: Movimiento
         private void btnAgregarM_Click(object sender, EventArgs e)
         {
-            Instruccion miInstruccion = new Instruccion();
+            Instruccion InstruccionMovimiento = new Instruccion();
+            InstruccionMovimiento.InstruccionId = misInstrucciones.Count + 1;
             if (radIzquierdaM.Checked)
-                miInstruccion.Tipo = 2;
+                InstruccionMovimiento.Tipo = 2;
             else
-                miInstruccion.Tipo = 1;
-            miInstruccion.InstruccionId = misInstrucciones.Count + 1;
+                InstruccionMovimiento.Tipo = 1;
 
-            ActualizarListadoInstrucciones(miInstruccion);
+            ActualizarListadoInstrucciones(InstruccionMovimiento);
+
+            radDerechaM.Checked = true;
+        }
+
+        //Instrucción: Almacenar
+        private void btnAgregarA_Click(object sender, EventArgs e)
+        {
+            Instruccion InstruccionAlmacenar = new Instruccion();
+            InstruccionAlmacenar.InstruccionId = misInstrucciones.Count + 1;
+            InstruccionAlmacenar.Tipo = 9;
+
+            ActualizarListadoInstrucciones(InstruccionAlmacenar);
+        }
+
+        //Instrucción: Escritura
+        private void btnAgregarE_Click(object sender, EventArgs e)
+        {
+            Instruccion InstruccionEscritura = new Instruccion();
+            InstruccionEscritura.InstruccionId = misInstrucciones.Count + 1;
+            InstruccionEscritura.Tipo = 3;
+            InstruccionEscritura.SimboloAEscribir = cmbEscritura.SelectedItem.ToString()[0];
+
+            ActualizarListadoInstrucciones(InstruccionEscritura);
+
+            cmbEscritura.SelectedIndex = 0;
+        }
+
+        //Instrucción: Búsqueda
+        private void btnAgregarB_Click(object sender, EventArgs e)
+        {
+            Instruccion InstruccionBusqueda = new Instruccion();
+            InstruccionBusqueda.InstruccionId = misInstrucciones.Count + 1;
+
+            if (radDerechaB.Checked && chkDiferenteB.Checked)
+            {
+                InstruccionBusqueda.Tipo = 6;
+            }
+            else
+            {
+                if(radIzquierdaB.Checked && chkDiferenteB.Checked)
+                {
+                    InstruccionBusqueda.Tipo = 7;
+                }
+                else
+                {
+                    if (radDerechaB.Checked)
+                        InstruccionBusqueda.Tipo = 4;
+                    else
+                        InstruccionBusqueda.Tipo = 5;
+                }
+            }
+
+            InstruccionBusqueda.SimboloBuscado = cmbBusqueda.SelectedItem.ToString()[0];
+
+            ActualizarListadoInstrucciones(InstruccionBusqueda);
+
+            radDerechaB.Checked = true;
+            cmbBusqueda.SelectedIndex = 0;
+            chkDiferenteB.Checked = false;
+        }
+
+        //Instrucción: Ir A
+        private void btnAgregarI_Click(object sender, EventArgs e)
+        {
+            Instruccion InstruccionIrA = new Instruccion();
+            InstruccionIrA.InstruccionId = misInstrucciones.Count + 1;
+            InstruccionIrA.Tipo = 8;
+
+            InstruccionIrA.InstruccionIrA = int.Parse(numPaso.Value.ToString());
+            InstruccionIrA.ParametrosIrA = txtCaracteresIrA.Text;
+
+            ActualizarListadoInstrucciones(InstruccionIrA);
+
+            numPaso.Value = 1;
+            txtCaracteresIrA.Clear();
         }
     }
 }
