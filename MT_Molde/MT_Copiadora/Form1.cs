@@ -225,11 +225,11 @@ namespace MT_Copiadora
 
             //Tab/////////////////////////
             //Movimiento
-            radIzquierdaM.Checked = true;
+            radDerechaM.Checked = true;
             //Escritura
             cmbEscritura.DataSource = null;
             //Búsqueda
-            radIzquierdaB.Checked = true;
+            radDerechaB.Checked = true;
             cmbBusqueda.DataSource = null;
             //Ir a..
             numCabezal.Value = 1;
@@ -496,7 +496,8 @@ namespace MT_Copiadora
             else
             {
                 MessageBox.Show("Ha concluido el procedimiento", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                tmrEjecucion.Stop();
+                //tmrEjecucion.Enabled = false;
+                //tmrEjecucion.Stop();
             }
         }
 
@@ -509,13 +510,15 @@ namespace MT_Copiadora
         {
             if(tmrEjecucion.Enabled)
             {
-                btnAceptar.Text = "Iniciar";
-                tmrEjecucion.Start();
+                btnIniciar.Text = "Iniciar";
+                tmrEjecucion.Enabled = true;
+                //tmrEjecucion.Start();
             }
             else
             {
-                btnAceptar.Text = "Detener";
-                tmrEjecucion.Stop();
+                btnIniciar.Text = "Detener";
+                tmrEjecucion.Enabled = false;
+                //tmrEjecucion.Stop();
             }
         }
     }
