@@ -23,6 +23,7 @@ namespace MT_Copiadora
         private void Main_Load(object sender, EventArgs e)
 		{
             btnReiniciar.Enabled = false;
+            dtgCinta.Enabled = false;
 		}
 
 		private void btnAleatoria_Click(object sender, EventArgs e)
@@ -85,10 +86,22 @@ namespace MT_Copiadora
                 btnAceptar.Enabled = false;
                 btnNuevo.Enabled = true;
                 //Colocar datos en la cinta (DataGrid)
-                for (int i = 0; i < miMT.Entrada.Length - 1; i++)
+                dtgCinta.ColumnCount = miMT.Entrada.Length;
+                int posicionCabezal = 0;
+                string[] celdas = new string[miMT.Entrada.Length];
+                char[] cinta = miMT.Entrada.ToCharArray();
+                for (int i = 0; i < miMT.Entrada.Length; i++)
                 {
-
+                    celdas[i] = cinta[i].ToString();
+                    if (i + 1 == miMT.Cabezal)
+                        posicionCabezal = i;
                 }
+                dtgCinta.Rows.Add(celdas);
+                //Mostrar la posicion del cabezal (DataGrid)
+                dtgCinta.CurrentCell = dtgCinta[posicionCabezal, 0];
+                dtgCinta.CurrentCell.Style.BackColor = Color.FromArgb(61,165,206);
+                dtgCinta.CurrentCell.Style.ForeColor = Color.White;
+                dtgCinta.CurrentCell.Selected = false;
             }
             catch (Exception ex)
             {

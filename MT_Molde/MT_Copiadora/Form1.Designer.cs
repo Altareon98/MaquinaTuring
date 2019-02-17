@@ -371,6 +371,7 @@
             this.Column24,
             this.Column25});
             this.dtgCinta.Location = new System.Drawing.Point(12, 12);
+            this.dtgCinta.MultiSelect = false;
             this.dtgCinta.Name = "dtgCinta";
             this.dtgCinta.ReadOnly = true;
             this.dtgCinta.RowHeadersVisible = false;
