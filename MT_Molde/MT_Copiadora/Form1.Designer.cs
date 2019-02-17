@@ -50,7 +50,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.dtgCinta = new System.Windows.Forms.DataGridView();
             this.tabCreadorInstruccion = new System.Windows.Forms.TabControl();
             this.tabMovimiento = new System.Windows.Forms.TabPage();
@@ -61,6 +60,7 @@
             this.tabAlmacenamiento = new System.Windows.Forms.TabPage();
             this.btnAgregarA = new System.Windows.Forms.Button();
             this.tabEscritura = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
             this.cmbEscritura = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnAgregarE = new System.Windows.Forms.Button();
@@ -68,8 +68,6 @@
             this.cmbBusqueda = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.radDerechaB = new System.Windows.Forms.RadioButton();
-            this.radIzquierdaB = new System.Windows.Forms.RadioButton();
             this.btnAgregarB = new System.Windows.Forms.Button();
             this.tabIrA = new System.Windows.Forms.TabPage();
             this.txtCaracteresIrA = new System.Windows.Forms.TextBox();
@@ -81,6 +79,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnReiniciar = new System.Windows.Forms.Button();
+            this.radDerechaB = new System.Windows.Forms.RadioButton();
+            this.radIzquierdaB = new System.Windows.Forms.RadioButton();
             this.grpMT.SuspendLayout();
             this.grpCabezal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCabezal)).BeginInit();
@@ -343,15 +343,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Blanco = _";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 313);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Variable = { ? }";
-            // 
             // dtgCinta
             // 
             this.dtgCinta.AllowUserToAddRows = false;
@@ -409,7 +400,8 @@
             // radDerechaM
             // 
             this.radDerechaM.AutoSize = true;
-            this.radDerechaM.Location = new System.Drawing.Point(6, 42);
+            this.radDerechaM.Checked = true;
+            this.radDerechaM.Location = new System.Drawing.Point(6, 19);
             this.radDerechaM.Name = "radDerechaM";
             this.radDerechaM.Size = new System.Drawing.Size(66, 17);
             this.radDerechaM.TabIndex = 2;
@@ -420,12 +412,10 @@
             // radIzquierdaM
             // 
             this.radIzquierdaM.AutoSize = true;
-            this.radIzquierdaM.Checked = true;
-            this.radIzquierdaM.Location = new System.Drawing.Point(6, 19);
+            this.radIzquierdaM.Location = new System.Drawing.Point(6, 42);
             this.radIzquierdaM.Name = "radIzquierdaM";
             this.radIzquierdaM.Size = new System.Drawing.Size(68, 17);
             this.radIzquierdaM.TabIndex = 1;
-            this.radIzquierdaM.TabStop = true;
             this.radIzquierdaM.Text = "Izquierda";
             this.radIzquierdaM.UseVisualStyleBackColor = true;
             // 
@@ -437,6 +427,7 @@
             this.btnAgregarM.TabIndex = 0;
             this.btnAgregarM.Text = "Agregar";
             this.btnAgregarM.UseVisualStyleBackColor = true;
+            this.btnAgregarM.Click += new System.EventHandler(this.btnAgregarM_Click);
             // 
             // tabAlmacenamiento
             // 
@@ -459,6 +450,7 @@
             // 
             // tabEscritura
             // 
+            this.tabEscritura.Controls.Add(this.label4);
             this.tabEscritura.Controls.Add(this.cmbEscritura);
             this.tabEscritura.Controls.Add(this.label5);
             this.tabEscritura.Controls.Add(this.btnAgregarE);
@@ -469,6 +461,15 @@
             this.tabEscritura.TabIndex = 1;
             this.tabEscritura.Text = "Escritura";
             this.tabEscritura.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 86);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Variable = { ? }";
             // 
             // cmbEscritura
             // 
@@ -498,11 +499,11 @@
             // 
             // tabBusqueda
             // 
+            this.tabBusqueda.Controls.Add(this.radDerechaB);
+            this.tabBusqueda.Controls.Add(this.radIzquierdaB);
             this.tabBusqueda.Controls.Add(this.cmbBusqueda);
             this.tabBusqueda.Controls.Add(this.label13);
             this.tabBusqueda.Controls.Add(this.label12);
-            this.tabBusqueda.Controls.Add(this.radDerechaB);
-            this.tabBusqueda.Controls.Add(this.radIzquierdaB);
             this.tabBusqueda.Controls.Add(this.btnAgregarB);
             this.tabBusqueda.Location = new System.Drawing.Point(4, 22);
             this.tabBusqueda.Name = "tabBusqueda";
@@ -533,32 +534,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(6, 3);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(55, 13);
+            this.label12.Size = new System.Drawing.Size(52, 13);
             this.label12.TabIndex = 6;
-            this.label12.Text = "Desde la..";
-            // 
-            // radDerechaB
-            // 
-            this.radDerechaB.AutoSize = true;
-            this.radDerechaB.Location = new System.Drawing.Point(6, 42);
-            this.radDerechaB.Name = "radDerechaB";
-            this.radDerechaB.Size = new System.Drawing.Size(66, 17);
-            this.radDerechaB.TabIndex = 5;
-            this.radDerechaB.TabStop = true;
-            this.radDerechaB.Text = "Derecha";
-            this.radDerechaB.UseVisualStyleBackColor = true;
-            // 
-            // radIzquierdaB
-            // 
-            this.radIzquierdaB.AutoSize = true;
-            this.radIzquierdaB.Checked = true;
-            this.radIzquierdaB.Location = new System.Drawing.Point(6, 19);
-            this.radIzquierdaB.Name = "radIzquierdaB";
-            this.radIzquierdaB.Size = new System.Drawing.Size(68, 17);
-            this.radIzquierdaB.TabIndex = 4;
-            this.radIzquierdaB.TabStop = true;
-            this.radIzquierdaB.Text = "Izquierda";
-            this.radIzquierdaB.UseVisualStyleBackColor = true;
+            this.label12.Text = "Hacia la..";
             // 
             // btnAgregarB
             // 
@@ -675,6 +653,28 @@
             this.btnReiniciar.Text = "Reiniciar";
             this.btnReiniciar.UseVisualStyleBackColor = true;
             // 
+            // radDerechaB
+            // 
+            this.radDerechaB.AutoSize = true;
+            this.radDerechaB.Checked = true;
+            this.radDerechaB.Location = new System.Drawing.Point(6, 19);
+            this.radDerechaB.Name = "radDerechaB";
+            this.radDerechaB.Size = new System.Drawing.Size(66, 17);
+            this.radDerechaB.TabIndex = 10;
+            this.radDerechaB.TabStop = true;
+            this.radDerechaB.Text = "Derecha";
+            this.radDerechaB.UseVisualStyleBackColor = true;
+            // 
+            // radIzquierdaB
+            // 
+            this.radIzquierdaB.AutoSize = true;
+            this.radIzquierdaB.Location = new System.Drawing.Point(6, 42);
+            this.radIzquierdaB.Name = "radIzquierdaB";
+            this.radIzquierdaB.Size = new System.Drawing.Size(68, 17);
+            this.radIzquierdaB.TabIndex = 9;
+            this.radIzquierdaB.Text = "Izquierda";
+            this.radIzquierdaB.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -682,7 +682,6 @@
             this.ClientSize = new System.Drawing.Size(584, 346);
             this.Controls.Add(this.btnReiniciar);
             this.Controls.Add(this.btnIniciar);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.lstInstrucciones);
             this.Controls.Add(this.tabCreadorInstruccion);
@@ -728,7 +727,6 @@
 		private System.Windows.Forms.Button btnAceptar;
 		private System.Windows.Forms.NumericUpDown numCabezal;
         private System.Windows.Forms.GroupBox grpCinta;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TabControl tabCreadorInstruccion;
         private System.Windows.Forms.TabPage tabMovimiento;
@@ -748,8 +746,6 @@
         private System.Windows.Forms.Button btnAgregarA;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.RadioButton radDerechaB;
-        private System.Windows.Forms.RadioButton radIzquierdaB;
         private System.Windows.Forms.ComboBox cmbBusqueda;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.NumericUpDown numPaso;
@@ -772,6 +768,9 @@
         private System.Windows.Forms.CheckBox chkCEspecial3;
         private System.Windows.Forms.CheckBox chkCEspecial2;
         private System.Windows.Forms.CheckBox chkCEspecial1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RadioButton radDerechaB;
+        private System.Windows.Forms.RadioButton radIzquierdaB;
     }
 }
 

@@ -97,7 +97,7 @@ namespace MT_Copiadora
         {
             for (int e = 0; e < txtEntrada.Text.Length; e++)
             {
-                if (!txtAlfabeto.Text.Contains(txtEntrada.Text[e]))
+                if (!txtCinta.Text.Contains(txtEntrada.Text[e]))
                 {
                     return false;
                 }
@@ -141,7 +141,7 @@ namespace MT_Copiadora
                     ActualizarCabezal();
 
                     //Agregar Lista de Caracteres a controles de tabCrearInstrucción
-                    //Creación de Lista de Caracteres
+                    //Creación de Lista de Caracteres con Variable
                     List<char> lstCintaConVariable = new List<char>();
 
                     for (int i = 0; i < miMT.Cinta.Length; i++)
@@ -153,8 +153,16 @@ namespace MT_Copiadora
                     //Escritura
                     cmbEscritura.DataSource = lstCintaConVariable;
 
+                    //Creación de Lista de Caracteres Sin Variable
+                    List<char> lstCintaSinVariable = new List<char>();
+
+                    for (int i = 0; i < miMT.Cinta.Length; i++)
+                    {
+                        lstCintaSinVariable.Add(miMT.Cinta[i]);
+                    }
+
                     //Búsqueda
-                    cmbBusqueda.DataSource = lstCintaConVariable;
+                    cmbBusqueda.DataSource = lstCintaSinVariable;
 
                     ////////////////////////////////////////////////////////////////
                 }
@@ -284,6 +292,27 @@ namespace MT_Copiadora
         private void numCabezal_ValueChanged(object sender, EventArgs e)
         {
             ActualizarCabezal();
+        }
+
+        private void ActualizarListadoInstrucciones(Instruccion rmiInstruccion)
+        {
+            //Añadir instrucción a la lista genérica
+            misInstrucciones.Add(rmiInstruccion);
+
+            //Actualizar Listado de Instrucciones en lstInstrucciones
+            lstInstrucciones.Items.Add(rmiInstruccion);
+        }
+
+        private void btnAgregarM_Click(object sender, EventArgs e)
+        {
+            Instruccion miInstruccion = new Instruccion();
+            if (radIzquierdaM.Checked)
+                miInstruccion.Tipo = 2;
+            else
+                miInstruccion.Tipo = 1;
+            miInstruccion.InstruccionId = misInstrucciones.Count + 1;
+
+            ActualizarListadoInstrucciones(miInstruccion);
         }
     }
 }
