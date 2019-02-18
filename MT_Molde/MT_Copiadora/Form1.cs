@@ -177,6 +177,16 @@ namespace MT_Copiadora
                 {
                     throw new Exception("Error en la Cadena de Entrada");
                 }
+
+                if (lstInstrucciones.Items.Count != 0)
+                {
+                    blnIniciado = false;
+                    btnIniciar.Enabled = true;
+                }
+                else
+                {
+                    btnIniciar.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -207,6 +217,13 @@ namespace MT_Copiadora
             grpEntrada.Enabled = true;
             grpCinta.Enabled = true;
             grpCabezal.Enabled = true;
+
+            intInstruccionSiguiente = 1;
+
+            blnIniciado = false;
+            btnIniciar.Enabled = false;
+
+            btnBorrarInstrucciones.Enabled = true;
         }
 
         private void txtAlfabeto_TextChanged(object sender, EventArgs e)
@@ -274,6 +291,7 @@ namespace MT_Copiadora
                 misInstrucciones = new List<Instruccion>();
                 blnListaCreada = true;
                 btnIniciar.Enabled = true;
+                btnBorrarInstrucciones.Enabled = true;
             }
 
             Instruccion InstruccionMovimiento = new Instruccion();
@@ -296,6 +314,7 @@ namespace MT_Copiadora
                 misInstrucciones = new List<Instruccion>();
                 blnListaCreada = true;
                 btnIniciar.Enabled = true;
+                btnBorrarInstrucciones.Enabled = true;
             }
 
             Instruccion InstruccionAlmacenar = new Instruccion();
@@ -305,6 +324,8 @@ namespace MT_Copiadora
             InstruccionAlmacenar.ParametrosAlmacenamiento = txtCaracteresA.Text;
 
             ActualizarListadoInstrucciones(InstruccionAlmacenar);
+
+            txtCaracteresA.Clear();
         }
 
         //Instrucción: Escritura
@@ -315,6 +336,7 @@ namespace MT_Copiadora
                 misInstrucciones = new List<Instruccion>();
                 blnListaCreada = true;
                 btnIniciar.Enabled = true;
+                btnBorrarInstrucciones.Enabled = true;
             }
 
             Instruccion InstruccionEscritura = new Instruccion();
@@ -336,6 +358,7 @@ namespace MT_Copiadora
                 misInstrucciones = new List<Instruccion>();
                 blnListaCreada = true;
                 btnIniciar.Enabled = true;
+                btnBorrarInstrucciones.Enabled = true;
             }
 
             Instruccion InstruccionBusqueda = new Instruccion();
@@ -377,6 +400,7 @@ namespace MT_Copiadora
                 misInstrucciones = new List<Instruccion>();
                 blnListaCreada = true;
                 btnIniciar.Enabled = true;
+                btnBorrarInstrucciones.Enabled = true;
             }
 
             Instruccion InstruccionIrA = new Instruccion();
@@ -510,11 +534,22 @@ namespace MT_Copiadora
             }
         }
 
+        //Boolean para el bloqueo del Creador de Instrucciones
+        bool blnIniciado = false;
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             try
             {
                 ActualizarDTG();
+
+                //Si ya se inició, marcar como Iniciado y desactivar Creador de Instrucciones
+                if (!blnIniciado)
+                {
+                    tabCreadorInstruccion.Enabled = false;
+                    blnIniciado = true;
+                    tabCreadorInstruccion.SelectedIndex = 0;
+                    btnBorrarInstrucciones.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -586,6 +621,8 @@ namespace MT_Copiadora
             btnIniciar.Enabled = false;
         }
 
+
+        bool blnBorrado = false;
         private void btnBorrarInstrucciones_Click(object sender, EventArgs e)
         {
             misInstrucciones = null;
@@ -605,6 +642,21 @@ namespace MT_Copiadora
             intInstruccionSiguiente = 1;
 
             btnIniciar.Enabled = false;
+
+            //Bloquear Creador de Instrucciones cuando se haya iniciado la ejecución
+            blnIniciado = false;
+            tabCreadorInstruccion.Enabled = true;
+
+            if (blnBorrado)
+            {
+                btnBorrarInstrucciones.Enabled = false;
+                blnBorrado = false;
+            }
+            else
+            {
+                btnBorrarInstrucciones.Enabled = true;
+                blnBorrado = true;
+            }
         }
     }
 }
