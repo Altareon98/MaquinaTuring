@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.components = new System.ComponentModel.Container();
             this.grpMT = new System.Windows.Forms.GroupBox();
             this.grpCabezal = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -83,7 +82,7 @@
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnReiniciar = new System.Windows.Forms.Button();
             this.chkDiferenteB = new System.Windows.Forms.CheckBox();
-            this.tmrEjecucion = new System.Windows.Forms.Timer(this.components);
+            this.btnBorrarInstrucciones = new System.Windows.Forms.Button();
             this.grpMT.SuspendLayout();
             this.grpCabezal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCabezal)).BeginInit();
@@ -212,7 +211,7 @@
             // txtEntrada
             // 
             this.txtEntrada.Location = new System.Drawing.Point(70, 45);
-            this.txtEntrada.MaxLength = 25;
+            this.txtEntrada.MaxLength = 30;
             this.txtEntrada.Name = "txtEntrada";
             this.txtEntrada.Size = new System.Drawing.Size(180, 20);
             this.txtEntrada.TabIndex = 13;
@@ -667,7 +666,7 @@
             // 
             // btnIniciar
             // 
-            this.btnIniciar.Location = new System.Drawing.Point(454, 315);
+            this.btnIniciar.Location = new System.Drawing.Point(401, 315);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(56, 22);
             this.btnIniciar.TabIndex = 6;
@@ -677,11 +676,11 @@
             // 
             // btnReiniciar
             // 
-            this.btnReiniciar.Location = new System.Drawing.Point(516, 315);
+            this.btnReiniciar.Location = new System.Drawing.Point(12, 315);
             this.btnReiniciar.Name = "btnReiniciar";
-            this.btnReiniciar.Size = new System.Drawing.Size(56, 22);
+            this.btnReiniciar.Size = new System.Drawing.Size(75, 22);
             this.btnReiniciar.TabIndex = 7;
-            this.btnReiniciar.Text = "Reiniciar";
+            this.btnReiniciar.Text = "Reiniciar MT";
             this.btnReiniciar.UseVisualStyleBackColor = true;
             this.btnReiniciar.Click += new System.EventHandler(this.btnReiniciar_Click);
             // 
@@ -695,10 +694,15 @@
             this.chkDiferenteB.Text = "Diferente a ↑";
             this.chkDiferenteB.UseVisualStyleBackColor = true;
             // 
-            // tmrEjecucion
+            // btnBorrarInstrucciones
             // 
-            this.tmrEjecucion.Interval = 3000;
-            this.tmrEjecucion.Tick += new System.EventHandler(this.tmrEjecucion_Tick);
+            this.btnBorrarInstrucciones.Location = new System.Drawing.Point(463, 315);
+            this.btnBorrarInstrucciones.Name = "btnBorrarInstrucciones";
+            this.btnBorrarInstrucciones.Size = new System.Drawing.Size(109, 22);
+            this.btnBorrarInstrucciones.TabIndex = 6;
+            this.btnBorrarInstrucciones.Text = "Borrar Instrucciones";
+            this.btnBorrarInstrucciones.UseVisualStyleBackColor = true;
+            this.btnBorrarInstrucciones.Click += new System.EventHandler(this.btnBorrarInstrucciones_Click);
             // 
             // Main
             // 
@@ -706,6 +710,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 346);
             this.Controls.Add(this.btnReiniciar);
+            this.Controls.Add(this.btnBorrarInstrucciones);
             this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.lstInstrucciones);
@@ -797,7 +802,7 @@
         private System.Windows.Forms.RadioButton radDerechaB;
         private System.Windows.Forms.RadioButton radIzquierdaB;
         private System.Windows.Forms.CheckBox chkDiferenteB;
-        private System.Windows.Forms.Timer tmrEjecucion;
+        private System.Windows.Forms.Button btnBorrarInstrucciones;
     }
 }
 

@@ -27,6 +27,7 @@ namespace MT_Copiadora
         private void Main_Load(object sender, EventArgs e)
 		{
             btnNuevo.Enabled = false;
+            btnIniciar.Enabled = false;
             btnReiniciar.Enabled = false;
 		}
 
@@ -114,6 +115,8 @@ namespace MT_Copiadora
             {
                 if (ValidarAlfabeto())
                 {
+                    intInstruccionSiguiente = 1;
+
                     //Creación de MT
                     miMT = new MT(int.Parse(numCabezal.Value.ToString()), txtAlfabeto.Text, txtCinta.Text, txtEntrada.Text);
 
@@ -270,6 +273,7 @@ namespace MT_Copiadora
             {
                 misInstrucciones = new List<Instruccion>();
                 blnListaCreada = true;
+                btnIniciar.Enabled = true;
             }
 
             Instruccion InstruccionMovimiento = new Instruccion();
@@ -291,6 +295,7 @@ namespace MT_Copiadora
             {
                 misInstrucciones = new List<Instruccion>();
                 blnListaCreada = true;
+                btnIniciar.Enabled = true;
             }
 
             Instruccion InstruccionAlmacenar = new Instruccion();
@@ -307,6 +312,7 @@ namespace MT_Copiadora
             {
                 misInstrucciones = new List<Instruccion>();
                 blnListaCreada = true;
+                btnIniciar.Enabled = true;
             }
 
             Instruccion InstruccionEscritura = new Instruccion();
@@ -326,6 +332,7 @@ namespace MT_Copiadora
             {
                 misInstrucciones = new List<Instruccion>();
                 blnListaCreada = true;
+                btnIniciar.Enabled = true;
             }
 
             Instruccion InstruccionBusqueda = new Instruccion();
@@ -366,6 +373,7 @@ namespace MT_Copiadora
             {
                 misInstrucciones = new List<Instruccion>();
                 blnListaCreada = true;
+                btnIniciar.Enabled = true;
             }
 
             Instruccion InstruccionIrA = new Instruccion();
@@ -478,54 +486,24 @@ namespace MT_Copiadora
             if (blnEncontrado)
             {
                 EjecutarAcciones(miInstruccionActual);
-
-                //Actualizar DTG
-                //dtgCinta.Rows.Clear();
-                //dtgCinta.ColumnCount = miMT.Entrada.Length;
-                //string[] celdas = new string[miMT.Entrada.Length];
-                //char[] cinta = miMT.Entrada.ToCharArray();
-                //for (int i = 0; i < miMT.Entrada.Length; i++)
-                //{
-                //    celdas[i] = cinta[i].ToString();
-                //}
-                //dtgCinta.Rows.Add(celdas);
-
-                //Actualizar Cabezal
-                //dtgCinta.CurrentCell.Style.BackColor = Color.White;
-                //dtgCinta.CurrentCell.Style.ForeColor = Color.Black;
-                //dtgCinta.CurrentCell = dtgCinta[miMT.Cabezal - 1, 0];
-                //dtgCinta.CurrentCell.Style.BackColor = Color.FromArgb(61, 165, 206);
-                //dtgCinta.CurrentCell.Style.ForeColor = Color.White;
-                //dtgCinta.CurrentCell.Selected = false;
             }
             else
             {
                 MessageBox.Show("Ha concluido el procedimiento", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //tmrEjecucion.Enabled = false;
-                //tmrEjecucion.Stop();
+                btnIniciar.Enabled = false;
             }
-        }
-
-        private void tmrEjecucion_Tick(object sender, EventArgs e)
-        {
-            ActualizarDTG();
         }
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-            ActualizarDTG();
-            //if(tmrEjecucion.Enabled)
-            //{
-            //    btnIniciar.Text = "Iniciar";
-            //    tmrEjecucion.Enabled = true;
-            //    //tmrEjecucion.Start();
-            //}
-            //else
-            //{
-            //    btnIniciar.Text = "Detener";
-            //    tmrEjecucion.Enabled = false;
-            //    //tmrEjecucion.Stop();
-            //}
+            try
+            {
+                ActualizarDTG();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnReiniciar_Click(object sender, EventArgs e)
@@ -589,6 +567,28 @@ namespace MT_Copiadora
             btnAceptar.Enabled = true;
             btnReiniciar.Enabled = false;
             btnNuevo.Enabled = false;
+            btnIniciar.Enabled = false;
+        }
+
+        private void btnBorrarInstrucciones_Click(object sender, EventArgs e)
+        {
+            misInstrucciones = null;
+            blnListaCreada = false;
+            lstInstrucciones.Items.Clear();
+
+            miMT.Cabezal = int.Parse(numCabezal.Value.ToString());
+
+            //Actualizar Cabezal
+            dtgCinta.CurrentCell.Style.BackColor = Color.White;
+            dtgCinta.CurrentCell.Style.ForeColor = Color.Black;
+            dtgCinta.CurrentCell = dtgCinta[miMT.Cabezal - 1, 0];
+            dtgCinta.CurrentCell.Style.BackColor = Color.FromArgb(61, 165, 206);
+            dtgCinta.CurrentCell.Style.ForeColor = Color.White;
+            dtgCinta.CurrentCell.Selected = false;
+
+            intInstruccionSiguiente = 1;
+
+            btnIniciar.Enabled = false;
         }
     }
 }
