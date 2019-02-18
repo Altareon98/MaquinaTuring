@@ -124,6 +124,7 @@ namespace MT_Copiadora
                         grpEntrada.Enabled = false;
                         grpCabezal.Enabled = false;
                         btnAceptar.Enabled = false;
+                        btnReiniciar.Enabled = true;
                         btnNuevo.Enabled = true;
                     }
 
@@ -195,64 +196,14 @@ namespace MT_Copiadora
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            //Borrar MT
-            miMT = null;
-
-            //Borrar Lista de Instrucciones
-            misInstrucciones = null;
-            blnListaCreada = false;
-
-            //Limpieza de controles
-            dtgCinta.CurrentCell = null;
-            dtgCinta.Rows.Clear();
-            dtgCinta.ScrollBars = ScrollBars.None;
-
-            foreach(Control c in grpCinta.Controls)
-            {
-                if(c is TextBox)
-                {
-                    c.Text = "";
-                }
-            }
-
-            chkCEspecial1.Checked = false;
-            chkCEspecial2.Checked = false;
-            chkCEspecial3.Checked = false;
-
-            foreach (Control c in grpEntrada.Controls)
-            {
-                if (c is TextBox)
-                {
-                    c.Text = "";
-                }
-            }
-
-            numCabezal.Value = 1;
-
-            //Tab/////////////////////////
-            intInstruccionSiguiente = 1;
-            //Movimiento
-            radDerechaM.Checked = true;
-            //Escritura
-            cmbEscritura.DataSource = null;
-            //Búsqueda
-            radDerechaB.Checked = true;
-            cmbBusqueda.DataSource = null;
-            //Ir a..
-            numCabezal.Value = 1;
-            txtCaracteresIrA.Clear();
-
-            tabCreadorInstruccion.SelectedTab = tabMovimiento;
-            //////////////////////////////
-
-            lstInstrucciones.Items.Clear();
-
-            //Bloqueo y Desbloqueo de controles
-            grpCinta.Enabled = true;
-            grpEntrada.Enabled = true;
-            grpCabezal.Enabled = true;
-            btnAceptar.Enabled = true;
             btnNuevo.Enabled = false;
+            btnAceptar.Enabled = true;
+
+            dtgCinta.Rows.Clear();
+
+            grpEntrada.Enabled = true;
+            grpCinta.Enabled = true;
+            grpCabezal.Enabled = true;
         }
 
         private void txtAlfabeto_TextChanged(object sender, EventArgs e)
@@ -579,7 +530,65 @@ namespace MT_Copiadora
 
         private void btnReiniciar_Click(object sender, EventArgs e)
         {
+            //Borrar MT
+            miMT = null;
 
+            //Borrar Lista de Instrucciones
+            misInstrucciones = null;
+            blnListaCreada = false;
+
+            //Limpieza de controles
+            dtgCinta.CurrentCell = null;
+            dtgCinta.Rows.Clear();
+            dtgCinta.ScrollBars = ScrollBars.None;
+
+            foreach (Control c in grpCinta.Controls)
+            {
+                if (c is TextBox)
+                {
+                    c.Text = "";
+                }
+            }
+
+            chkCEspecial1.Checked = false;
+            chkCEspecial2.Checked = false;
+            chkCEspecial3.Checked = false;
+
+            foreach (Control c in grpEntrada.Controls)
+            {
+                if (c is TextBox)
+                {
+                    c.Text = "";
+                }
+            }
+
+            numCabezal.Value = 1;
+
+            //Tab/////////////////////////
+            intInstruccionSiguiente = 1;
+            //Movimiento
+            radDerechaM.Checked = true;
+            //Escritura
+            cmbEscritura.DataSource = null;
+            //Búsqueda
+            radDerechaB.Checked = true;
+            cmbBusqueda.DataSource = null;
+            //Ir a..
+            numCabezal.Value = 1;
+            txtCaracteresIrA.Clear();
+
+            tabCreadorInstruccion.SelectedTab = tabMovimiento;
+            //////////////////////////////
+
+            lstInstrucciones.Items.Clear();
+
+            //Bloqueo y Desbloqueo de controles
+            grpCinta.Enabled = true;
+            grpEntrada.Enabled = true;
+            grpCabezal.Enabled = true;
+            btnAceptar.Enabled = true;
+            btnReiniciar.Enabled = false;
+            btnNuevo.Enabled = false;
         }
     }
 }

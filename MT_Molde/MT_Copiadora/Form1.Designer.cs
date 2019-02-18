@@ -671,7 +671,7 @@
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(56, 22);
             this.btnIniciar.TabIndex = 6;
-            this.btnIniciar.Text = "Iniciar";
+            this.btnIniciar.Text = "Avanzar";
             this.btnIniciar.UseVisualStyleBackColor = true;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             // 
