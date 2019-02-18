@@ -302,6 +302,8 @@ namespace MT_Copiadora
             InstruccionAlmacenar.InstruccionId = misInstrucciones.Count + 1;
             InstruccionAlmacenar.Tipo = 9;
 
+            InstruccionAlmacenar.ParametrosAlmacenamiento = txtCaracteresA.Text;
+
             ActualizarListadoInstrucciones(InstruccionAlmacenar);
         }
 
@@ -318,6 +320,7 @@ namespace MT_Copiadora
             Instruccion InstruccionEscritura = new Instruccion();
             InstruccionEscritura.InstruccionId = misInstrucciones.Count + 1;
             InstruccionEscritura.Tipo = 3;
+
             InstruccionEscritura.SimboloAEscribir = cmbEscritura.SelectedValue.ToString()[0];
 
             ActualizarListadoInstrucciones(InstruccionEscritura);
@@ -411,7 +414,17 @@ namespace MT_Copiadora
                 case 3:
                     miInstruccion.Cinta = miMT.Resultante;
                     miInstruccion.PosicionCabezal = miMT.Cabezal;
-                    intInstruccionSiguiente = miInstruccion.Escribir();
+
+                    string strCaracterActual = miMT.Resultante[miMT.Cabezal - 1].ToString();
+                    if (strCaracterActual == "*" || strCaracterActual == "#" || strCaracterActual == "$" || strCaracterActual == "_")
+                    {
+                        intInstruccionSiguiente = miInstruccion.Escribir(miMT.Variable);
+                    }
+                    else
+                    {
+                        intInstruccionSiguiente = miInstruccion.Escribir();
+                    }
+                    
                     miMT.Resultante = miInstruccion.Cinta;
                     break;
                 case 4:
@@ -445,8 +458,11 @@ namespace MT_Copiadora
                     miMT.Cabezal = miInstruccion.PosicionCabezal;
                     break;
                 case 9:
-                    miMT.Variable = miMT.Resultante[miMT.Cabezal];
-                    miMT.Cabezal++;
+                    miInstruccion.Cinta = miMT.Resultante;
+                    miInstruccion.PosicionCabezal = miMT.Cabezal;
+                    miMT.Variable = miInstruccion.Almacenar(ref intInstruccionSiguiente)[0];
+                    //miMT.Variable = miMT.Resultante[miMT.Cabezal];
+                    //miMT.Cabezal++;
                     break;
             }
 

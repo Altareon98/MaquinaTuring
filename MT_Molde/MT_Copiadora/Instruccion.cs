@@ -33,6 +33,9 @@ namespace MT_Copiadora
 
         public int PosicionCabezal { get; set; }
         public int InstruccionSiguiente { get; set; }
+
+        public string ParametrosAlmacenamiento { get; set; }
+
         public string ParametrosIrA { get; set; }
         public int InstruccionIrA { get; set; }
 
@@ -60,6 +63,19 @@ namespace MT_Copiadora
             cadena[PosicionCabezal - 1] = SimboloAEscribir;
             Cinta = "";
             for(int i = 0; i < cadena.Length; i++)
+            {
+                Cinta = Cinta + cadena[i];
+            }
+            InstruccionSiguiente = InstruccionId + 1;
+            return InstruccionSiguiente;
+        }
+
+        public int Escribir(char rchrVariable)
+        {
+            char[] cadena = Cinta.ToCharArray();
+            cadena[PosicionCabezal - 1] = rchrVariable;
+            Cinta = "";
+            for (int i = 0; i < cadena.Length; i++)
             {
                 Cinta = Cinta + cadena[i];
             }
@@ -135,12 +151,31 @@ namespace MT_Copiadora
             return InstruccionSiguiente;
         }
         
+        public string Almacenar(ref int rintInstruccionSiguiente)
+        {
+            char[] parametros = ParametrosAlmacenamiento.ToCharArray();
+            char[] cadena = Cinta.ToCharArray();
+            string strSimboloAlmacenado = "";
+
+            for (int i = 0; i < parametros.Length; i++)
+            {
+                if (parametros[i] == cadena[PosicionCabezal - 1])
+                {
+                    strSimboloAlmacenado = parametros[i].ToString();
+                }
+            }
+
+            rintInstruccionSiguiente = InstruccionId + 1;
+            return strSimboloAlmacenado;
+        }
+
         public int IrA ()
         {
             char[] parametros = ParametrosIrA.ToCharArray();
             char[] cadena = Cinta.ToCharArray();
 
             InstruccionSiguiente = InstruccionId + 1;
+
             for (int i = 0; i < parametros.Length; i++)
             {
                 if (parametros[i] == cadena[PosicionCabezal - 1])

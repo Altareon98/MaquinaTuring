@@ -65,6 +65,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnAgregarE = new System.Windows.Forms.Button();
             this.tabBusqueda = new System.Windows.Forms.TabPage();
+            this.chkDiferenteB = new System.Windows.Forms.CheckBox();
             this.radDerechaB = new System.Windows.Forms.RadioButton();
             this.radIzquierdaB = new System.Windows.Forms.RadioButton();
             this.cmbBusqueda = new System.Windows.Forms.ComboBox();
@@ -81,8 +82,9 @@
             this.label16 = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnReiniciar = new System.Windows.Forms.Button();
-            this.chkDiferenteB = new System.Windows.Forms.CheckBox();
             this.btnBorrarInstrucciones = new System.Windows.Forms.Button();
+            this.txtCaracteresA = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.grpMT.SuspendLayout();
             this.grpCabezal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCabezal)).BeginInit();
@@ -433,6 +435,8 @@
             // 
             // tabAlmacenamiento
             // 
+            this.tabAlmacenamiento.Controls.Add(this.txtCaracteresA);
+            this.tabAlmacenamiento.Controls.Add(this.label17);
             this.tabAlmacenamiento.Controls.Add(this.btnAgregarA);
             this.tabAlmacenamiento.Location = new System.Drawing.Point(4, 22);
             this.tabAlmacenamiento.Name = "tabAlmacenamiento";
@@ -516,6 +520,16 @@
             this.tabBusqueda.TabIndex = 2;
             this.tabBusqueda.Text = "Búsqueda";
             this.tabBusqueda.UseVisualStyleBackColor = true;
+            // 
+            // chkDiferenteB
+            // 
+            this.chkDiferenteB.AutoSize = true;
+            this.chkDiferenteB.Location = new System.Drawing.Point(82, 30);
+            this.chkDiferenteB.Name = "chkDiferenteB";
+            this.chkDiferenteB.Size = new System.Drawing.Size(87, 17);
+            this.chkDiferenteB.TabIndex = 11;
+            this.chkDiferenteB.Text = "Diferente a ↑";
+            this.chkDiferenteB.UseVisualStyleBackColor = true;
             // 
             // radDerechaB
             // 
@@ -684,16 +698,6 @@
             this.btnReiniciar.UseVisualStyleBackColor = true;
             this.btnReiniciar.Click += new System.EventHandler(this.btnReiniciar_Click);
             // 
-            // chkDiferenteB
-            // 
-            this.chkDiferenteB.AutoSize = true;
-            this.chkDiferenteB.Location = new System.Drawing.Point(82, 30);
-            this.chkDiferenteB.Name = "chkDiferenteB";
-            this.chkDiferenteB.Size = new System.Drawing.Size(87, 17);
-            this.chkDiferenteB.TabIndex = 11;
-            this.chkDiferenteB.Text = "Diferente a ↑";
-            this.chkDiferenteB.UseVisualStyleBackColor = true;
-            // 
             // btnBorrarInstrucciones
             // 
             this.btnBorrarInstrucciones.Location = new System.Drawing.Point(463, 315);
@@ -703,6 +707,22 @@
             this.btnBorrarInstrucciones.Text = "Borrar Instrucciones";
             this.btnBorrarInstrucciones.UseVisualStyleBackColor = true;
             this.btnBorrarInstrucciones.Click += new System.EventHandler(this.btnBorrarInstrucciones_Click);
+            // 
+            // txtCaracteresA
+            // 
+            this.txtCaracteresA.Location = new System.Drawing.Point(8, 21);
+            this.txtCaracteresA.Name = "txtCaracteresA";
+            this.txtCaracteresA.Size = new System.Drawing.Size(103, 20);
+            this.txtCaracteresA.TabIndex = 9;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(5, 5);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(108, 13);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "Si se encuentra con..";
             // 
             // Main
             // 
@@ -734,6 +754,7 @@
             this.tabMovimiento.ResumeLayout(false);
             this.tabMovimiento.PerformLayout();
             this.tabAlmacenamiento.ResumeLayout(false);
+            this.tabAlmacenamiento.PerformLayout();
             this.tabEscritura.ResumeLayout(false);
             this.tabEscritura.PerformLayout();
             this.tabBusqueda.ResumeLayout(false);
@@ -803,6 +824,8 @@
         private System.Windows.Forms.RadioButton radIzquierdaB;
         private System.Windows.Forms.CheckBox chkDiferenteB;
         private System.Windows.Forms.Button btnBorrarInstrucciones;
+        private System.Windows.Forms.TextBox txtCaracteresA;
+        private System.Windows.Forms.Label label17;
     }
 }
 
