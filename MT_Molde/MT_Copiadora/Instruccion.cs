@@ -23,6 +23,14 @@ namespace MT_Copiadora
         public char SimboloAEscribir { get; set; }
         public char SimboloBuscado { get; set; }
         public string Cinta { get; set; }
+        //private string strCinta;
+
+        //public string Cinta
+        //{
+        //    get { return strCinta; }
+        //    set { strCinta = value; }
+        //}
+
         public int PosicionCabezal { get; set; }
         public int InstruccionSiguiente { get; set; }
         public string ParametrosIrA { get; set; }
@@ -32,7 +40,7 @@ namespace MT_Copiadora
         public int MoverDerecha ()
         {
             PosicionCabezal++;
-            InstruccionSiguiente = InstruccionId++;
+            InstruccionSiguiente = InstruccionId + 1;
             return InstruccionSiguiente;
         }
 
@@ -42,15 +50,20 @@ namespace MT_Copiadora
                 PosicionCabezal--;
             else
                 throw new Exception("Se ha generado un problema de terminación anormal!");
-            InstruccionSiguiente = InstruccionId++;
+            InstruccionSiguiente = InstruccionId + 1;
             return InstruccionSiguiente;
         }
 
         public int Escribir()
         {
             char[] cadena = Cinta.ToCharArray();
-            cadena[PosicionCabezal] = SimboloAEscribir;
-            Cinta = cadena.ToString();
+            cadena[PosicionCabezal - 1] = SimboloAEscribir;
+            Cinta = "";
+            for(int i = 0; i < cadena.Length; i++)
+            {
+                Cinta = Cinta + cadena[i];
+            }
+            InstruccionSiguiente = InstruccionId + 1;
             return InstruccionSiguiente;
         }
 
@@ -61,11 +74,11 @@ namespace MT_Copiadora
             do
             {
                 PosicionCabezal++;
-                if (cadena[PosicionCabezal] == SimboloBuscado)
+                if (cadena[PosicionCabezal - 1] == SimboloBuscado)
                     break;
             } while (true);
 
-            InstruccionSiguiente = InstruccionId++;
+            InstruccionSiguiente = InstruccionId + 1;
             return InstruccionSiguiente;
         }
 
@@ -80,11 +93,11 @@ namespace MT_Copiadora
                 else
                     throw new Exception("Se ha generado un problema de terminación anormal!");
 
-                if (cadena[PosicionCabezal] == SimboloBuscado)
+                if (cadena[PosicionCabezal - 1] == SimboloBuscado)
                     break;
             } while (true);
 
-            InstruccionSiguiente = InstruccionId++;
+            InstruccionSiguiente = InstruccionId + 1;
             return InstruccionSiguiente;
         }
 
@@ -95,11 +108,11 @@ namespace MT_Copiadora
             do
             {
                 PosicionCabezal++;
-                if (cadena[PosicionCabezal] != SimboloBuscado)
+                if (cadena[PosicionCabezal - 1] != SimboloBuscado)
                     break;
             } while (true);
 
-            InstruccionSiguiente = InstruccionId++;
+            InstruccionSiguiente = InstruccionId + 1;
             return InstruccionSiguiente;
         }
 
@@ -114,11 +127,11 @@ namespace MT_Copiadora
                 else
                     throw new Exception("Se ha generado un problema de terminación anormal!");
 
-                if (cadena[PosicionCabezal] != SimboloBuscado)
+                if (cadena[PosicionCabezal - 1] != SimboloBuscado)
                     break;
             } while (true);
 
-            InstruccionSiguiente = InstruccionId++;
+            InstruccionSiguiente = InstruccionId + 1;
             return InstruccionSiguiente;
         }
         
@@ -127,10 +140,10 @@ namespace MT_Copiadora
             char[] parametros = ParametrosIrA.ToCharArray();
             char[] cadena = Cinta.ToCharArray();
 
-            InstruccionSiguiente = InstruccionId++;
+            InstruccionSiguiente = InstruccionId + 1;
             for (int i = 0; i < parametros.Length; i++)
             {
-                if (parametros[i] == cadena[PosicionCabezal])
+                if (parametros[i] == cadena[PosicionCabezal - 1])
                 {
                     InstruccionSiguiente = InstruccionIrA;
                     break;

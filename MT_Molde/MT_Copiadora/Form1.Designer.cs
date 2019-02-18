@@ -355,13 +355,13 @@
             this.dtgCinta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dtgCinta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgCinta.ColumnHeadersVisible = false;
-            this.dtgCinta.Location = new System.Drawing.Point(12, 12);
+            this.dtgCinta.Location = new System.Drawing.Point(12, 343);
             this.dtgCinta.MultiSelect = false;
             this.dtgCinta.Name = "dtgCinta";
             this.dtgCinta.ReadOnly = true;
             this.dtgCinta.RowHeadersVisible = false;
             this.dtgCinta.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            this.dtgCinta.Size = new System.Drawing.Size(560, 40);
+            this.dtgCinta.Size = new System.Drawing.Size(560, 78);
             this.dtgCinta.TabIndex = 2;
             // 
             // tabCreadorInstruccion
@@ -683,6 +683,7 @@
             this.btnReiniciar.TabIndex = 7;
             this.btnReiniciar.Text = "Reiniciar";
             this.btnReiniciar.UseVisualStyleBackColor = true;
+            this.btnReiniciar.Click += new System.EventHandler(this.btnReiniciar_Click);
             // 
             // chkDiferenteB
             // 
@@ -696,14 +697,14 @@
             // 
             // tmrEjecucion
             // 
-            this.tmrEjecucion.Interval = 1500;
+            this.tmrEjecucion.Interval = 3000;
             this.tmrEjecucion.Tick += new System.EventHandler(this.tmrEjecucion_Tick);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 346);
+            this.ClientSize = new System.Drawing.Size(584, 433);
             this.Controls.Add(this.btnReiniciar);
             this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.label16);
