@@ -355,13 +355,13 @@
             this.dtgCinta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dtgCinta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgCinta.ColumnHeadersVisible = false;
-            this.dtgCinta.Location = new System.Drawing.Point(12, 343);
+            this.dtgCinta.Location = new System.Drawing.Point(12, 12);
             this.dtgCinta.MultiSelect = false;
             this.dtgCinta.Name = "dtgCinta";
             this.dtgCinta.ReadOnly = true;
             this.dtgCinta.RowHeadersVisible = false;
             this.dtgCinta.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            this.dtgCinta.Size = new System.Drawing.Size(560, 78);
+            this.dtgCinta.Size = new System.Drawing.Size(560, 40);
             this.dtgCinta.TabIndex = 2;
             // 
             // tabCreadorInstruccion
@@ -704,7 +704,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 433);
+            this.ClientSize = new System.Drawing.Size(584, 346);
             this.Controls.Add(this.btnReiniciar);
             this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.label16);

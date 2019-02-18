@@ -491,6 +491,7 @@ namespace MT_Copiadora
                     break;
             }
 
+            dtgCinta.Rows.Clear();
             string[] celdas = new string[miMT.Resultante.Length];
             char[] cinta = miMT.Resultante.ToCharArray();
             for (int i = 0; i < miMT.Resultante.Length; i++)
@@ -498,6 +499,14 @@ namespace MT_Copiadora
                 celdas[i] = cinta[i].ToString();
             }
             dtgCinta.Rows.Add(celdas);
+
+            //Actualizar Cabezal
+            dtgCinta.CurrentCell.Style.BackColor = Color.White;
+            dtgCinta.CurrentCell.Style.ForeColor = Color.Black;
+            dtgCinta.CurrentCell = dtgCinta[miMT.Cabezal - 1, 0];
+            dtgCinta.CurrentCell.Style.BackColor = Color.FromArgb(61, 165, 206);
+            dtgCinta.CurrentCell.Style.ForeColor = Color.White;
+            dtgCinta.CurrentCell.Selected = false;
         }
 
         private void ActualizarDTG()
