@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//Máquina de Turing
+//Por Lázaro y Jareth
+
 namespace MT_Copiadora
 {
 	public partial class Main : Form
