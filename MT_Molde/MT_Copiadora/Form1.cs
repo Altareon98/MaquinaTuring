@@ -24,7 +24,7 @@ namespace MT_Copiadora
         List<Instruccion> misInstrucciones;
         bool blnListaCreada = false;
 
-        //Variable global Problema de la parada
+        //Variables globales Problema de la parada
         int problemaParada = 0;
 
         private void Main_Load(object sender, EventArgs e)
@@ -220,8 +220,10 @@ namespace MT_Copiadora
             grpEntrada.Enabled = true;
             grpCinta.Enabled = true;
             grpCabezal.Enabled = true;
+            tabCreadorInstruccion.Enabled = true;
 
             intInstruccionSiguiente = 1;
+            problemaParada = 0;
 
             blnIniciado = false;
             btnIniciar.Enabled = false;
@@ -431,14 +433,12 @@ namespace MT_Copiadora
                     miInstruccion.PosicionCabezal = miMT.Cabezal;
                     intInstruccionSiguiente = miInstruccion.MoverDerecha();
                     miMT.Cabezal = miInstruccion.PosicionCabezal;
-                    problemaParada++;
                     break;
                 case 2:
                     miInstruccion.Cinta = miMT.Resultante;
                     miInstruccion.PosicionCabezal = miMT.Cabezal;
                     intInstruccionSiguiente = miInstruccion.MoverIzquierda();
                     miMT.Cabezal = miInstruccion.PosicionCabezal;
-                    problemaParada++;
                     break;
                 case 3:
                     miInstruccion.Cinta = miMT.Resultante;
@@ -494,6 +494,7 @@ namespace MT_Copiadora
                     //miMT.Cabezal++;
                     break;
             }
+            problemaParada = miInstruccion.VecesEjecutado;
 
             dtgCinta.Rows.Clear();
             string[] celdas = new string[miMT.Resultante.Length];
@@ -545,7 +546,7 @@ namespace MT_Copiadora
         {
             try
             {
-                if (problemaParada >= 30)
+                if (problemaParada >= 20)
                     throw new Exception("Se ha generado un problema de la parada.");
                 ActualizarDTG();
 
@@ -629,6 +630,7 @@ namespace MT_Copiadora
             btnReiniciar.Enabled = false;
             btnNuevo.Enabled = false;
             btnIniciar.Enabled = false;
+            tabCreadorInstruccion.Enabled = true;
         }
 
 

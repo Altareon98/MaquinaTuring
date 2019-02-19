@@ -9,7 +9,10 @@ namespace MT_Copiadora
     class Instruccion
     {
         // CONSTRUCTORES //
-        public Instruccion() { }
+        public Instruccion()
+        {
+            VecesEjecutado = 0;
+        }
         public Instruccion(string cinta, int posicionCabezal)
         {
             Cinta = cinta;
@@ -39,11 +42,14 @@ namespace MT_Copiadora
         public string ParametrosIrA { get; set; }
         public int InstruccionIrA { get; set; }
 
+        public int VecesEjecutado { get; set; }
+
         // INSTRUCCIONES //
         public int MoverDerecha ()
         {
             PosicionCabezal++;
             InstruccionSiguiente = InstruccionId + 1;
+            VecesEjecutado++;
             return InstruccionSiguiente;
         }
 
@@ -54,6 +60,7 @@ namespace MT_Copiadora
             else
                 throw new Exception("Se ha generado un problema de terminación anormal!");
             InstruccionSiguiente = InstruccionId + 1;
+            VecesEjecutado++;
             return InstruccionSiguiente;
         }
 
@@ -67,6 +74,7 @@ namespace MT_Copiadora
                 Cinta = Cinta + cadena[i];
             }
             InstruccionSiguiente = InstruccionId + 1;
+            VecesEjecutado++;
             return InstruccionSiguiente;
         }
 
@@ -80,6 +88,7 @@ namespace MT_Copiadora
                 Cinta = Cinta + cadena[i];
             }
             InstruccionSiguiente = InstruccionId + 1;
+            VecesEjecutado++;
             return InstruccionSiguiente;
         }
 
@@ -95,6 +104,7 @@ namespace MT_Copiadora
             } while (true);
 
             InstruccionSiguiente = InstruccionId + 1;
+            VecesEjecutado++;
             return InstruccionSiguiente;
         }
 
@@ -114,6 +124,7 @@ namespace MT_Copiadora
             } while (true);
 
             InstruccionSiguiente = InstruccionId + 1;
+            VecesEjecutado++;
             return InstruccionSiguiente;
         }
 
@@ -129,6 +140,7 @@ namespace MT_Copiadora
             } while (true);
 
             InstruccionSiguiente = InstruccionId + 1;
+            VecesEjecutado++;
             return InstruccionSiguiente;
         }
 
@@ -148,6 +160,7 @@ namespace MT_Copiadora
             } while (true);
 
             InstruccionSiguiente = InstruccionId + 1;
+            VecesEjecutado++;
             return InstruccionSiguiente;
         }
         
@@ -166,6 +179,7 @@ namespace MT_Copiadora
             }
 
             rintInstruccionSiguiente = InstruccionId + 1;
+            VecesEjecutado++;
             return strSimboloAlmacenado;
         }
 
@@ -184,6 +198,7 @@ namespace MT_Copiadora
                     break;
                 }
             }
+            VecesEjecutado++;
             return InstruccionSiguiente;
         }
 
