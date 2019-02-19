@@ -32,6 +32,8 @@ namespace MT_Copiadora
             btnNuevo.Enabled = false;
             btnIniciar.Enabled = false;
             btnReiniciar.Enabled = false;
+
+            btnAceptar.Enabled = false;
 		}
 
 		private void btnAleatoria_Click(object sender, EventArgs e)
@@ -213,7 +215,6 @@ namespace MT_Copiadora
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             btnNuevo.Enabled = false;
-            btnAceptar.Enabled = true;
 
             dtgCinta.Rows.Clear();
 
@@ -229,6 +230,11 @@ namespace MT_Copiadora
             btnIniciar.Enabled = false;
 
             btnBorrarInstrucciones.Enabled = true;
+
+            if (txtEntrada.Text != null)
+            {
+                btnAceptar.Enabled = true;
+            }
         }
 
         private void txtAlfabeto_TextChanged(object sender, EventArgs e)
@@ -626,7 +632,9 @@ namespace MT_Copiadora
             grpCinta.Enabled = true;
             grpEntrada.Enabled = true;
             grpCabezal.Enabled = true;
-            btnAceptar.Enabled = true;
+
+            btnAceptar.Enabled = false;
+
             btnReiniciar.Enabled = false;
             btnNuevo.Enabled = false;
             btnIniciar.Enabled = false;
@@ -641,15 +649,18 @@ namespace MT_Copiadora
             blnListaCreada = false;
             lstInstrucciones.Items.Clear();
 
-            miMT.Cabezal = int.Parse(numCabezal.Value.ToString());
+            if(miMT != null)
+            {
+                miMT.Cabezal = int.Parse(numCabezal.Value.ToString());
+            }
 
             //Actualizar Cabezal
-            dtgCinta.CurrentCell.Style.BackColor = Color.White;
-            dtgCinta.CurrentCell.Style.ForeColor = Color.Black;
-            dtgCinta.CurrentCell = dtgCinta[miMT.Cabezal - 1, 0];
-            dtgCinta.CurrentCell.Style.BackColor = Color.FromArgb(61, 165, 206);
-            dtgCinta.CurrentCell.Style.ForeColor = Color.White;
-            dtgCinta.CurrentCell.Selected = false;
+            //dtgCinta.CurrentCell.Style.BackColor = Color.White;
+            //dtgCinta.CurrentCell.Style.ForeColor = Color.Black;
+            //dtgCinta.CurrentCell = dtgCinta[miMT.Cabezal - 1, 0];
+            //dtgCinta.CurrentCell.Style.BackColor = Color.FromArgb(61, 165, 206);
+            //dtgCinta.CurrentCell.Style.ForeColor = Color.White;
+            //dtgCinta.CurrentCell.Selected = false;
 
             intInstruccionSiguiente = 1;
 
@@ -668,6 +679,14 @@ namespace MT_Copiadora
             {
                 btnBorrarInstrucciones.Enabled = true;
                 blnBorrado = true;
+            }
+        }
+
+        private void txtEntrada_TextChanged(object sender, EventArgs e)
+        {
+            if (txtEntrada.Text != null)
+            {
+                btnAceptar.Enabled = true;
             }
         }
     }

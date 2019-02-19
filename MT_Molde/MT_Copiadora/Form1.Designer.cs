@@ -58,6 +58,8 @@
             this.radIzquierdaM = new System.Windows.Forms.RadioButton();
             this.btnAgregarM = new System.Windows.Forms.Button();
             this.tabAlmacenamiento = new System.Windows.Forms.TabPage();
+            this.txtCaracteresA = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.btnAgregarA = new System.Windows.Forms.Button();
             this.tabEscritura = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
@@ -83,8 +85,6 @@
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnReiniciar = new System.Windows.Forms.Button();
             this.btnBorrarInstrucciones = new System.Windows.Forms.Button();
-            this.txtCaracteresA = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.grpMT.SuspendLayout();
             this.grpCabezal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCabezal)).BeginInit();
@@ -219,6 +219,7 @@
             this.txtEntrada.TabIndex = 13;
             this.txtEntrada.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtEntrada.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtEntrada_MouseClick);
+            this.txtEntrada.TextChanged += new System.EventHandler(this.txtEntrada_TextChanged);
             // 
             // label10
             // 
@@ -444,6 +445,22 @@
             this.tabAlmacenamiento.TabIndex = 4;
             this.tabAlmacenamiento.Text = "Almacenamiento";
             this.tabAlmacenamiento.UseVisualStyleBackColor = true;
+            // 
+            // txtCaracteresA
+            // 
+            this.txtCaracteresA.Location = new System.Drawing.Point(8, 21);
+            this.txtCaracteresA.Name = "txtCaracteresA";
+            this.txtCaracteresA.Size = new System.Drawing.Size(103, 20);
+            this.txtCaracteresA.TabIndex = 9;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(5, 5);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(108, 13);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "Si se encuentra con..";
             // 
             // btnAgregarA
             // 
@@ -707,22 +724,6 @@
             this.btnBorrarInstrucciones.Text = "Borrar Instrucciones";
             this.btnBorrarInstrucciones.UseVisualStyleBackColor = true;
             this.btnBorrarInstrucciones.Click += new System.EventHandler(this.btnBorrarInstrucciones_Click);
-            // 
-            // txtCaracteresA
-            // 
-            this.txtCaracteresA.Location = new System.Drawing.Point(8, 21);
-            this.txtCaracteresA.Name = "txtCaracteresA";
-            this.txtCaracteresA.Size = new System.Drawing.Size(103, 20);
-            this.txtCaracteresA.TabIndex = 9;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(5, 5);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(108, 13);
-            this.label17.TabIndex = 8;
-            this.label17.Text = "Si se encuentra con..";
             // 
             // Main
             // 
