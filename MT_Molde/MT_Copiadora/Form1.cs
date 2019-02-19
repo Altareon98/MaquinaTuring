@@ -24,6 +24,9 @@ namespace MT_Copiadora
         List<Instruccion> misInstrucciones;
         bool blnListaCreada = false;
 
+        //Variable global Problema de la parada
+        int problemaParada = 0;
+
         private void Main_Load(object sender, EventArgs e)
 		{
             btnNuevo.Enabled = false;
@@ -428,12 +431,14 @@ namespace MT_Copiadora
                     miInstruccion.PosicionCabezal = miMT.Cabezal;
                     intInstruccionSiguiente = miInstruccion.MoverDerecha();
                     miMT.Cabezal = miInstruccion.PosicionCabezal;
+                    problemaParada++;
                     break;
                 case 2:
                     miInstruccion.Cinta = miMT.Resultante;
                     miInstruccion.PosicionCabezal = miMT.Cabezal;
                     intInstruccionSiguiente = miInstruccion.MoverIzquierda();
                     miMT.Cabezal = miInstruccion.PosicionCabezal;
+                    problemaParada++;
                     break;
                 case 3:
                     miInstruccion.Cinta = miMT.Resultante;
@@ -540,6 +545,8 @@ namespace MT_Copiadora
         {
             try
             {
+                if (problemaParada >= 30)
+                    throw new Exception("Se ha generado un problema de la parada.");
                 ActualizarDTG();
 
                 //Si ya se inició, marcar como Iniciado y desactivar Creador de Instrucciones
@@ -561,6 +568,9 @@ namespace MT_Copiadora
         {
             //Borrar MT
             miMT = null;
+
+            //Resetear la variable del problema de la parada
+            problemaParada = 0;
 
             //Borrar Lista de Instrucciones
             misInstrucciones = null;
